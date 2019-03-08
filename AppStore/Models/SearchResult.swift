@@ -16,7 +16,11 @@ struct SearchResult: Codable {
 }
 
 struct Result: Codable {
+	
 	let trackName: String
 	let primaryGenreName: String
+	
+	// Optional because not all apps have ratings
+	var averageUserRating: Float?
 }
 
