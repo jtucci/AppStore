@@ -19,8 +19,11 @@ class AppSearchController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		
 		collectionView?.backgroundColor = .white
 		collectionView?.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
+		
+		fetchITunesApps()
     }
 
 	
@@ -33,10 +36,36 @@ class AppSearchController: UICollectionViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	//MARK: Network Call
+	private func fetchITunesApps() {
+		
+		let urlString = "https://itunes.apple.com/search?term=instagram&entity=software"
+		guard let url = URL(string: urlString) else { return }
+		
+		URLSession.shared.dataTask(with: url) { (data, response, error) in
+			
+			if let error = error {
+				print("Failed to fetch apps:", error)
+				return
+			}
+			
+			guard let data = data else { return }
+			
+			do {
+				let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
+				searchResult.results.forEach({print($0.trackName)})
+			} catch let jsonErr{
+				print("Failed to decode json: ", jsonErr)
+			}
+			
+			
+			
+		}.resume()
+	}
 	
 	//MARK:- Collection View Delegate
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
 		return cell
 	}
 	
