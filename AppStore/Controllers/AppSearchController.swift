@@ -38,33 +38,18 @@ class AppSearchController: UICollectionViewController {
 	
 	//MARK: Network Call
 	private func fetchITunesApps() {
-		
-		let urlString = "https://itunes.apple.com/search?term=instagram&entity=software"
-		guard let url = URL(string: urlString) else { return }
-		
-		URLSession.shared.dataTask(with: url) { (data, response, error) in
+		APIService.shared.fetchApps { (results, error) in
 			
 			if let error = error {
-				print("Failed to fetch apps:", error)
+				print("Failed to fetch apps: ", error)
 				return
 			}
 			
-			guard let data = data else { return }
-			
-			do {
-				let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-				self.appResults = searchResult.results
-				DispatchQueue.main.async {
-					self.collectionView?.reloadData()
-				}
-				
-			} catch let jsonErr{
-				print("Failed to decode json: ", jsonErr)
+			self.appResults = results
+			DispatchQueue.main.async {
+				self.collectionView?.reloadData()
 			}
-			
-			
-			
-		}.resume()
+		}
 	}
 	
 	//MARK:- Collection View Delegate
