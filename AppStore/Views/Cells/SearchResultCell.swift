@@ -12,8 +12,7 @@ class SearchResultCell: UICollectionViewCell {
 	
 	//MARK:- Properties
 	
-	// Image view used for app icon image
-	let imageView: UIImageView = {
+	let appIconImageView: UIImageView = {
 		let iv = UIImageView()
 		iv.backgroundColor = .red
 		
@@ -23,7 +22,6 @@ class SearchResultCell: UICollectionViewCell {
 		return iv
 	}()
 	
-	// Label used for app name
 	let nameLabel: UILabel = {
 		let label = UILabel()
 		label.text = "APP NAME"
@@ -45,7 +43,6 @@ class SearchResultCell: UICollectionViewCell {
 		return label
 	}()
 	
-	// Button used for the 'get' app feature
 	let getButton: UIButton = {
 		let button = UIButton(type: .system)
 		button.setTitle("GET", for: .normal)
@@ -53,42 +50,68 @@ class SearchResultCell: UICollectionViewCell {
 		button.titleLabel?.font = .boldSystemFont(ofSize: 14)
 		button.backgroundColor = .darkGray
 		button.widthAnchor.constraint(equalToConstant: 80).isActive = true
+		button.heightAnchor.constraint(equalToConstant: 32).isActive = true
 		button.layer.cornerRadius = 16
 		return button
 	}()
 	
-	
+	lazy var screenShotImageView1 = self.createScreenShotImageView()
+	lazy var screenShotImageView2 = self.createScreenShotImageView()
+	lazy var screenShotImageView3 = self.createScreenShotImageView()
 	
 	//MARK:- Initialization
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
-		backgroundColor = .yellow
-		
-		let labelsStackView = UIStackView(arrangedSubviews: [
-			nameLabel, categoryLabel, ratingsLabel
-		])
-		
-		labelsStackView.axis = .vertical
-		
-		let stackView = UIStackView(arrangedSubviews: [
-				imageView, labelsStackView, getButton
-		])
-		
-		stackView.alignment = .center
-		
-		stackView.spacing = 12
-		
-		addSubview(stackView)
-		stackView.translatesAutoresizingMaskIntoConstraints = false
-		stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-		stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
-		stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-		stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
+		setupCellLayout()
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	//MARK:- Setup
+	private func setupCellLayout() {
+		// Labels STACK VIEW (used inside top stack view)
+		let labelsStackView = UIStackView(arrangedSubviews: [
+			nameLabel, categoryLabel, ratingsLabel
+			])
+		labelsStackView.axis = .vertical
+		
+		
+		// TOP STACK VIEW
+		let infoTopStackView  = UIStackView(arrangedSubviews: [
+			appIconImageView, labelsStackView, getButton
+			])
+		infoTopStackView.alignment = .center
+		infoTopStackView.spacing = 12
+		
+		
+		// BOTTOM STACK VIEW (ScreenShot image previews)
+		let screenShotBottomStackView = UIStackView(arrangedSubviews: [
+			screenShotImageView1,
+			screenShotImageView2,
+			screenShotImageView3
+			])
+		screenShotBottomStackView.spacing = 12
+		screenShotBottomStackView.distribution = .fillEqually
+		
+		
+		// ROOT STACK VIEW (contains all)
+		let rootStackView = UIStackView(arrangedSubviews: [
+			infoTopStackView, screenShotBottomStackView
+			])
+		rootStackView.axis = .vertical
+		rootStackView.spacing = 16
+		
+		addSubview(rootStackView)
+		rootStackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
+	}
+	
+	//MARK:- Helper
+	private func createScreenShotImageView() -> UIImageView {
+		let imageView = UIImageView()
+		imageView.backgroundColor = .purple
+		return imageView
+	}
 }
