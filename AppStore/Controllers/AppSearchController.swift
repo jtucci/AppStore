@@ -13,7 +13,7 @@ class AppSearchController: UICollectionViewController {
 	
 	//MARK:- Properties
 	private let cellId = "cell"
-	
+	private var appResults = [Result]()
 	
 	//MARK:- Life Cycle
     override func viewDidLoad() {
@@ -53,7 +53,11 @@ class AppSearchController: UICollectionViewController {
 			
 			do {
 				let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-				searchResult.results.forEach({print($0.trackName)})
+				self.appResults = searchResult.results
+				DispatchQueue.main.async {
+					self.collectionView?.reloadData()
+				}
+				
 			} catch let jsonErr{
 				print("Failed to decode json: ", jsonErr)
 			}
@@ -66,11 +70,16 @@ class AppSearchController: UICollectionViewController {
 	//MARK:- Collection View Delegate
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
+		let appResult = appResults[indexPath.item]
+		
+		cell.nameLabel.text = appResult.trackName
+		cell.categoryLabel.text = appResult.primaryGenreName
+		cell.ratingsLabel.text = "Rating: \(appResult.averageUserRating ?? 0)"
 		return cell
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 5
+		return appResults.count
 	}
 	
 }
