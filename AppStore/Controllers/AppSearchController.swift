@@ -15,16 +15,17 @@ class AppSearchController: UICollectionViewController {
 	//MARK:- Properties
 	private let cellId = "cell"
 	private var appResults = [Result]()
+	private let searchController = UISearchController(searchResultsController: nil)
+	private var timer: Timer? // Used to throttle search results when typing
 	
 	//MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		
 		collectionView?.backgroundColor = .white
 		collectionView?.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
 		
-		fetchITunesApps()
+		setupSearchBar()
     }
 
 	
@@ -37,21 +38,16 @@ class AppSearchController: UICollectionViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	//MARK: Network Call
-	private func fetchITunesApps() {
-		APIService.shared.fetchApps { (results, error) in
-			
-			if let error = error {
-				print("Failed to fetch apps: ", error)
-				return
-			}
-			
-			self.appResults = results
-			DispatchQueue.main.async {
-				self.collectionView?.reloadData()
-			}
-		}
+	
+	//MARK:- Setup
+	private func setupSearchBar() {
+		definesPresentationContext = true
+		navigationItem.searchController = self.searchController
+		navigationItem.hidesSearchBarWhenScrolling = false
+		searchController.dimsBackgroundDuringPresentation = false
+		searchController.searchBar.delegate = self
 	}
+	
 	
 	//MARK:- Collection View Delegate
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -77,4 +73,31 @@ extension AppSearchController: UICollectionViewDelegateFlowLayout {
 		
 	}
 	
+}
+
+//MARK:- Search Bar Delegate
+extension AppSearchController: UISearchBarDelegate {
+	
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		
+		// Throttles api calls to wait until user finishes typing
+		timer?.invalidate()
+		timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+			
+			APIService.shared.fetchApps(searchTerm: searchText) { (results, error) in
+				
+				if let error = error {
+					print("Failed to fetch apps: ", error)
+					return
+				}
+				
+				self.appResults = results
+				DispatchQueue.main.async {
+					self.collectionView?.reloadData()
+				}
+				
+			} // END APIService
+		}) // END Timer
+		
+	}
 }
