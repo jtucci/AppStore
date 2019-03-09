@@ -14,6 +14,8 @@ class AppsPageController: BaseCollectionViewController {
 	let appGroupCell = "AppGroupCell"
 	let headerCellId = "headerId"
 	
+	var editorsChoiceGames: AppCategory?
+	
 	//MARK: - Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -33,13 +35,15 @@ class AppsPageController: BaseCollectionViewController {
 				return
 			}
 			
-			print(appCategory?.feed.results)
+			self.editorsChoiceGames = appCategory
 			DispatchQueue.main.async {
-				
-				
+				self.collectionView?.reloadData()
 			}//END DispatchQueue
+			
 		}//END APIService
+		
 	}//END fetchDAta
+	
 	
 	//MARK:- Collection View Data Source
 	// Header cell
@@ -51,12 +55,16 @@ class AppsPageController: BaseCollectionViewController {
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appGroupCell, for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appGroupCell, for: indexPath) as! AppCategoryCell
+		
+		cell.titleLabel.text = editorsChoiceGames?.feed.title
+		cell.horizontalController.appCategory = editorsChoiceGames
+		cell.horizontalController.collectionView?.reloadData()
 		return cell
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 5
+		return 1
 	}
 
 }

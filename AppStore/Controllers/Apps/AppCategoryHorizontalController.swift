@@ -13,6 +13,7 @@ class AppCategoryHorizontalController: BaseCollectionViewController {
 	//MARK:- Properties
 	let appHorizontalCellId = "AppHorizontalCell"
 	
+	var appCategory: AppCategory?
 	
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
@@ -27,11 +28,16 @@ class AppCategoryHorizontalController: BaseCollectionViewController {
 	
 	//MARK:- Collection View Data Source 
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 10
+		return appCategory?.feed.results.count ?? 0
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appHorizontalCellId, for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appHorizontalCellId, for: indexPath) as! AppCell
+		
+		let app = appCategory?.feed.results[indexPath.item]
+		cell.nameLabel.text = app?.name
+		cell.companyLabel.text = app?.artistName
+		cell.imageView.sd_setImage(with: URL(string: app?.artworkUrl100 ?? ""))
 		
 		return cell
 	}
