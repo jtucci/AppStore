@@ -14,7 +14,7 @@ class AppsGroupCell: UICollectionViewCell {
 	//MARK:- Properties
 	let titleLabel = UILabel(text: "Add Section", font: .boldSystemFont(ofSize: 30))
 
-	let horizontalController = UIViewController()
+	let horizontalController = AppsHorizontalController()
 	
 	//MARK:- Initialization
 	override init(frame: CGRect) {
@@ -36,7 +36,7 @@ class AppsGroupCell: UICollectionViewCell {
 		addSubview(titleLabel)
 		titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
 		addSubview(horizontalController.view)
-		horizontalController.view.backgroundColor = .blue 
+		horizontalController.view.backgroundColor = .blue
 		horizontalController.view.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
 	}
 }
