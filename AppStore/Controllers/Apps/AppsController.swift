@@ -11,15 +11,15 @@ import UIKit
 class AppsController: BaseCollectionViewController {
 	
 	//MARK:- Properties
-	let appSectionCellId = "AppSectionCell"
+	let appGroupCell = "AppGroupCell"
 	
 	
 	//MARK: - Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		collectionView?.backgroundColor = . yellow
+		collectionView?.backgroundColor = .white
 		
-		collectionView?.register(AppsGroupCell.self, forCellWithReuseIdentifier: appSectionCellId)
+		collectionView?.register(AppsGroupCell.self, forCellWithReuseIdentifier: appGroupCell)
 	}
 	
 	//MARK:- Collection View Delegate
@@ -28,7 +28,7 @@ class AppsController: BaseCollectionViewController {
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appSectionCellId, for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appGroupCell, for: indexPath)
 		return cell
 	}
 	
@@ -39,8 +39,11 @@ extension AppsController: UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		
-		return CGSize(width: view.frame.width, height: 250)
-		
+		return CGSize(width: view.frame.width, height: 300)
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+		return .init(top: 16, left: 0, bottom: 0, right: 0)
 	}
 	
 }
