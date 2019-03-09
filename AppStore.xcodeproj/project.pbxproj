@@ -210,6 +210,22 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		F0D22D9C2234668D007E619A /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				F0E788642232E49700E77A82 /* AppDelegate.swift */,
+			);
+			path = "App Delegate";
+			sourceTree = "<group>";
+		};
+		F0D22D9D223466E6007E619A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F0E788702232E49800E77A82 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		F0E788582232E49700E77A82 = {
 			isa = PBXGroup;
 			children = (
@@ -233,7 +249,7 @@
 		F0E788632232E49700E77A82 /* AppStore */ = {
 			isa = PBXGroup;
 			children = (
-				F0E788642232E49700E77A82 /* AppDelegate.swift */,
+				F0D22D9C2234668D007E619A /* App Delegate */,
 				F0E788872232E4F700E77A82 /* Models */,
 				F0E788882232E4FF00E77A82 /* Views */,
 				F0E788842232E4B900E77A82 /* Controllers */,
@@ -241,7 +257,7 @@
 				F0E788892232E51700E77A82 /* Protocols */,
 				F0E7888A2232E52100E77A82 /* Extensions */,
 				F0E788852232E4CD00E77A82 /* Resources */,
-				F0E788702232E49800E77A82 /* Info.plist */,
+				F0D22D9D223466E6007E619A /* Supporting Files */,
 			);
 			path = AppStore;
 			sourceTree = "<group>";
@@ -665,7 +681,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V3KUBC4QCP;
-				INFOPLIST_FILE = AppStore/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/AppStore/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -684,7 +700,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V3KUBC4QCP;
-				INFOPLIST_FILE = AppStore/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/AppStore/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
