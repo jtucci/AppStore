@@ -59,3 +59,4 @@ class AppRowCell: UICollectionViewCell {
 		rootStackView.fillSuperview()
 	}
 }
+
