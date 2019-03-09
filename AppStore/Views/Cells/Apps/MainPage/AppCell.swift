@@ -8,8 +8,7 @@
 
 import UIKit
 
-class AppRowCell: UICollectionViewCell {
-	
+class AppCell: UICollectionViewCell {
 	
 	//MARK:- Properties
 	let imageView: UIImageView = UIImageView(cornerRadius: 8)
