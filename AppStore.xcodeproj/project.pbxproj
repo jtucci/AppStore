@@ -23,6 +23,10 @@
 		F0D22D8322342DBA007E619A /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D8222342DBA007E619A /* BaseCollectionViewController.swift */; };
 		F0D22D872234352B007E619A /* AppsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D862234352B007E619A /* AppsGroupCell.swift */; };
 		F0D22D8922343A67007E619A /* AppsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D8822343A67007E619A /* AppsHorizontalController.swift */; };
+		F0D22D8B22344053007E619A /* AppRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D8A22344053007E619A /* AppRowCell.swift */; };
+		F0D22D8D22344156007E619A /* UILabel+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D8C22344156007E619A /* UILabel+Init.swift */; };
+		F0D22D8F2234420E007E619A /* UIImageView+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D8E2234420E007E619A /* UIImageView+Init.swift */; };
+		F0D22D9122344239007E619A /* UIButton+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D9022344239007E619A /* UIButton+Init.swift */; };
 		F0E788652232E49700E77A82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E788642232E49700E77A82 /* AppDelegate.swift */; };
 		F0E788672232E49700E77A82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E788662232E49700E77A82 /* ViewController.swift */; };
 		F0E7886A2232E49700E77A82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0E788682232E49700E77A82 /* Main.storyboard */; };
@@ -62,6 +66,10 @@
 		F0D22D8222342DBA007E619A /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
 		F0D22D862234352B007E619A /* AppsGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsGroupCell.swift; sourceTree = "<group>"; };
 		F0D22D8822343A67007E619A /* AppsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHorizontalController.swift; sourceTree = "<group>"; };
+		F0D22D8A22344053007E619A /* AppRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRowCell.swift; sourceTree = "<group>"; };
+		F0D22D8C22344156007E619A /* UILabel+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Init.swift"; sourceTree = "<group>"; };
+		F0D22D8E2234420E007E619A /* UIImageView+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Init.swift"; sourceTree = "<group>"; };
+		F0D22D9022344239007E619A /* UIButton+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Init.swift"; sourceTree = "<group>"; };
 		F0E788612232E49700E77A82 /* AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E788642232E49700E77A82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0E788662232E49700E77A82 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				F0D22D862234352B007E619A /* AppsGroupCell.swift */,
+				F0D22D8A22344053007E619A /* AppRowCell.swift */,
 			);
 			path = Apps;
 			sourceTree = "<group>";
@@ -286,6 +295,9 @@
 			children = (
 				F0D22D6C2233099D007E619A /* UIView+Layout.swift */,
 				F0D22D6E223317E5007E619A /* VerticalStackView.swift */,
+				F0D22D8C22344156007E619A /* UILabel+Init.swift */,
+				F0D22D8E2234420E007E619A /* UIImageView+Init.swift */,
+				F0D22D9022344239007E619A /* UIButton+Init.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -462,14 +474,18 @@
 			files = (
 				F0E788672232E49700E77A82 /* ViewController.swift in Sources */,
 				F0E788652232E49700E77A82 /* AppDelegate.swift in Sources */,
+				F0D22D8D22344156007E619A /* UILabel+Init.swift in Sources */,
+				F0D22D9122344239007E619A /* UIButton+Init.swift in Sources */,
 				F0D22D712233242E007E619A /* SearchResult.swift in Sources */,
 				F0D22D7E22342C22007E619A /* AppsController.swift in Sources */,
 				F0D22D6D2233099D007E619A /* UIView+Layout.swift in Sources */,
 				F0D22D662232EF61007E619A /* BaseTabBarController.swift in Sources */,
+				F0D22D8B22344053007E619A /* AppRowCell.swift in Sources */,
 				F0D22D682232F9EA007E619A /* AppSearchController.swift in Sources */,
 				F0D22D872234352B007E619A /* AppsGroupCell.swift in Sources */,
 				F0D22D6B2233005D007E619A /* SearchResultCell.swift in Sources */,
 				F0D22D8322342DBA007E619A /* BaseCollectionViewController.swift in Sources */,
+				F0D22D8F2234420E007E619A /* UIImageView+Init.swift in Sources */,
 				F0D22D7322332CA8007E619A /* APIService.swift in Sources */,
 				F0D22D8922343A67007E619A /* AppsHorizontalController.swift in Sources */,
 				F0D22D6F223317E5007E619A /* VerticalStackView.swift in Sources */,
