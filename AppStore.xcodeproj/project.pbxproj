@@ -30,6 +30,7 @@
 		F0D22D9322344D30007E619A /* AppsHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D9222344D30007E619A /* AppsHeaderCollectionView.swift */; };
 		F0D22D952234584C007E619A /* AppsHeaderHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D942234584C007E619A /* AppsHeaderHorizontalController.swift */; };
 		F0D22D9922345B1F007E619A /* AppsHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D9822345B1F007E619A /* AppsHeaderViewCell.swift */; };
+		F0D22D9F22346B64007E619A /* AppCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D9E22346B64007E619A /* AppCategory.swift */; };
 		F0E788652232E49700E77A82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E788642232E49700E77A82 /* AppDelegate.swift */; };
 		F0E7886C2232E49800E77A82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0E7886B2232E49800E77A82 /* Assets.xcassets */; };
 		F0E7886F2232E49800E77A82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0E7886D2232E49800E77A82 /* LaunchScreen.storyboard */; };
@@ -74,6 +75,7 @@
 		F0D22D9222344D30007E619A /* AppsHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderCollectionView.swift; sourceTree = "<group>"; };
 		F0D22D942234584C007E619A /* AppsHeaderHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderHorizontalController.swift; sourceTree = "<group>"; };
 		F0D22D9822345B1F007E619A /* AppsHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderViewCell.swift; sourceTree = "<group>"; };
+		F0D22D9E22346B64007E619A /* AppCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCategory.swift; sourceTree = "<group>"; };
 		F0E788612232E49700E77A82 /* AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E788642232E49700E77A82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0E7886B2232E49800E77A82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				F0D22D702233242E007E619A /* SearchResult.swift */,
+				F0D22D9E22346B64007E619A /* AppCategory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				F0D22D682232F9EA007E619A /* AppSearchController.swift in Sources */,
 				F0D22D952234584C007E619A /* AppsHeaderHorizontalController.swift in Sources */,
 				F0D22D872234352B007E619A /* AppCategoryCell.swift in Sources */,
+				F0D22D9F22346B64007E619A /* AppCategory.swift in Sources */,
 				F0D22D9922345B1F007E619A /* AppsHeaderViewCell.swift in Sources */,
 				F0D22D6B2233005D007E619A /* SearchResultCell.swift in Sources */,
 				F0D22D8322342DBA007E619A /* BaseCollectionViewController.swift in Sources */,

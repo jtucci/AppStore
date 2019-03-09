@@ -21,9 +21,25 @@ class AppsPageController: BaseCollectionViewController {
 		
 		collectionView?.register(AppCategoryCell.self, forCellWithReuseIdentifier: appGroupCell)
 		collectionView?.register(AppsHeaderCollectionView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerCellId)
+		
+		fetchData()
 	}
 	
-
+	//MARK:- Network
+	private func fetchData() {
+		APIService.shared.fetchGames { (appCategory, error) in
+			if let error = error {
+				print("Failed to fetch games: ", error)
+				return
+			}
+			
+			print(appCategory?.feed.results)
+			DispatchQueue.main.async {
+				
+				
+			}//END DispatchQueue
+		}//END APIService
+	}//END fetchDAta
 	
 	//MARK:- Collection View Data Source
 	// Header cell
