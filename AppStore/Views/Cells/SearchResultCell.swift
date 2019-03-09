@@ -38,6 +38,8 @@ class SearchResultCell: UICollectionViewCell {
 		iv.widthAnchor.constraint(equalToConstant: 64).isActive = true
 		iv.heightAnchor.constraint(equalToConstant: 64).isActive = true
 		iv.layer.cornerRadius = 12
+		iv.layer.borderWidth = 0.5
+		iv.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
 		iv.clipsToBounds = true
 		return iv
 	}()
@@ -45,21 +47,18 @@ class SearchResultCell: UICollectionViewCell {
 	let nameLabel: UILabel = {
 		let label = UILabel()
 		label.text = "APP NAME"
-		label.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
 		return label
 	}()
 	
 	let categoryLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Photos & Video"
-		label.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
 		return label
 	}()
 	
 	let ratingsLabel: UILabel = {
 		let label = UILabel()
 		label.text = "9.26M"
-		label.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
 		return label
 	}()
 	
@@ -68,7 +67,7 @@ class SearchResultCell: UICollectionViewCell {
 		button.setTitle("GET", for: .normal)
 		button.setTitleColor(.blue, for: .normal)
 		button.titleLabel?.font = .boldSystemFont(ofSize: 14)
-		button.backgroundColor = .darkGray
+		button.backgroundColor = UIColor(white: 0.95, alpha: 1)
 		button.widthAnchor.constraint(equalToConstant: 80).isActive = true
 		button.heightAnchor.constraint(equalToConstant: 32).isActive = true
 		button.layer.cornerRadius = 16
