@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppsHorizontalController: BaseCollectionViewController {
+class AppCategoryHorizontalController: BaseCollectionViewController {
 	
 	//MARK:- Properties
 	let appHorizontalCellId = "AppHorizontalCell"
@@ -18,14 +18,14 @@ class AppsHorizontalController: BaseCollectionViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		collectionView?.backgroundColor = .white
-		collectionView?.register(AppRowCell.self, forCellWithReuseIdentifier: appHorizontalCellId)
+		collectionView?.register(AppCell.self, forCellWithReuseIdentifier: appHorizontalCellId)
 		
 		if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
 			layout.scrollDirection = .horizontal
 		}
 	}
 	
-	//MARK:- Collection View Delegate
+	//MARK:- Collection View Data Source 
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return 10
 	}
@@ -39,8 +39,8 @@ class AppsHorizontalController: BaseCollectionViewController {
 	
 }
 
-//MARK:- Collection View Flow Layout Delegate
-extension AppsHorizontalController: UICollectionViewDelegateFlowLayout {
+//MARK:- Collection View Layout
+extension AppCategoryHorizontalController: UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		let height = (view.frame.height - 24 - 20) / 3
