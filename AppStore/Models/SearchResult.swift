@@ -22,5 +22,8 @@ struct Result: Codable {
 	
 	// Optional because not all apps have ratings
 	var averageUserRating: Float?
+	
+	let screenshotUrls: [String] 	// app screen shots
+	let artworkUrl100: String 		// app icon
 }
 
