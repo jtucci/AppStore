@@ -45,7 +45,7 @@ class AppsPageController: BaseCollectionViewController {
 		var group3: AppCategory?
 		
 		//Used to sync data fetches
-		var dispatchGroup = DispatchGroup()
+		let dispatchGroup = DispatchGroup()
 		
 		dispatchGroup.enter()
 		APIService.shared.fetchGames { (appCategory, error) in

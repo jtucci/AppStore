@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppCategoryHorizontalController: BaseCollectionViewController {
+class AppCategoryHorizontalController: HorizontalSnappingCollectionViewController {
 	
 	//MARK:- Properties
 	let appHorizontalCellId = "AppHorizontalCell"
@@ -20,10 +20,8 @@ class AppCategoryHorizontalController: BaseCollectionViewController {
 		super.viewDidLoad()
 		collectionView?.backgroundColor = .white
 		collectionView?.register(AppCell.self, forCellWithReuseIdentifier: appHorizontalCellId)
-		
-		if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-			layout.scrollDirection = .horizontal
-		}
+		collectionView?.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
+
 	}
 	
 	//MARK:- Collection View Data Source 

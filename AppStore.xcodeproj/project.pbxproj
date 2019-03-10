@@ -32,6 +32,7 @@
 		F0D22D9922345B1F007E619A /* AppsHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D9822345B1F007E619A /* AppsHeaderViewCell.swift */; };
 		F0D22D9F22346B64007E619A /* AppCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D9E22346B64007E619A /* AppCategory.swift */; };
 		F0D22DA222349BCB007E619A /* SocialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22DA122349BCB007E619A /* SocialApp.swift */; };
+		F0D22DA422358B62007E619A /* HorizontalSnappingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22DA322358B62007E619A /* HorizontalSnappingCollectionViewController.swift */; };
 		F0E788652232E49700E77A82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E788642232E49700E77A82 /* AppDelegate.swift */; };
 		F0E7886C2232E49800E77A82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0E7886B2232E49800E77A82 /* Assets.xcassets */; };
 		F0E7886F2232E49800E77A82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0E7886D2232E49800E77A82 /* LaunchScreen.storyboard */; };
@@ -78,6 +79,7 @@
 		F0D22D9822345B1F007E619A /* AppsHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderViewCell.swift; sourceTree = "<group>"; };
 		F0D22D9E22346B64007E619A /* AppCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCategory.swift; sourceTree = "<group>"; };
 		F0D22DA122349BCB007E619A /* SocialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialApp.swift; sourceTree = "<group>"; };
+		F0D22DA322358B62007E619A /* HorizontalSnappingCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingCollectionViewController.swift; sourceTree = "<group>"; };
 		F0E788612232E49700E77A82 /* AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E788642232E49700E77A82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0E7886B2232E49800E77A82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -132,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				F0D22D85223434FD007E619A /* Apps */,
-				F0D22D84223434EC007E619A /* AppSearch */,
+				F0D22D84223434EC007E619A /* Search */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -164,9 +166,8 @@
 		F0D22D7F22342C27007E619A /* Apps */ = {
 			isa = PBXGroup;
 			children = (
-				F0D22D7D22342C22007E619A /* AppsPageController.swift */,
-				F0D22D8822343A67007E619A /* AppCategoryHorizontalController.swift */,
-				F0D22D942234584C007E619A /* AppsHeaderHorizontalController.swift */,
+				F0D22DA6223590AE007E619A /* Header */,
+				F0D22DA52235909E007E619A /* Main Page */,
 			);
 			path = Apps;
 			sourceTree = "<group>";
@@ -179,12 +180,12 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		F0D22D84223434EC007E619A /* AppSearch */ = {
+		F0D22D84223434EC007E619A /* Search */ = {
 			isa = PBXGroup;
 			children = (
 				F0D22D6A2233005D007E619A /* SearchResultCell.swift */,
 			);
-			path = AppSearch;
+			path = Search;
 			sourceTree = "<group>";
 		};
 		F0D22D85223434FD007E619A /* Apps */ = {
@@ -235,8 +236,26 @@
 			children = (
 				F0D22D652232EF61007E619A /* BaseTabBarController.swift */,
 				F0D22D8222342DBA007E619A /* BaseCollectionViewController.swift */,
+				F0D22DA322358B62007E619A /* HorizontalSnappingCollectionViewController.swift */,
 			);
 			path = Root;
+			sourceTree = "<group>";
+		};
+		F0D22DA52235909E007E619A /* Main Page */ = {
+			isa = PBXGroup;
+			children = (
+				F0D22D7D22342C22007E619A /* AppsPageController.swift */,
+				F0D22D8822343A67007E619A /* AppCategoryHorizontalController.swift */,
+			);
+			path = "Main Page";
+			sourceTree = "<group>";
+		};
+		F0D22DA6223590AE007E619A /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				F0D22D942234584C007E619A /* AppsHeaderHorizontalController.swift */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 		F0E788582232E49700E77A82 = {
@@ -529,6 +548,7 @@
 				F0D22D6D2233099D007E619A /* UIView+Layout.swift in Sources */,
 				F0D22D662232EF61007E619A /* BaseTabBarController.swift in Sources */,
 				F0D22D8B22344053007E619A /* AppCell.swift in Sources */,
+				F0D22DA422358B62007E619A /* HorizontalSnappingCollectionViewController.swift in Sources */,
 				F0D22D682232F9EA007E619A /* AppSearchController.swift in Sources */,
 				F0D22D952234584C007E619A /* AppsHeaderHorizontalController.swift in Sources */,
 				F0D22D872234352B007E619A /* AppCategoryCell.swift in Sources */,
