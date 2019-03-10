@@ -14,7 +14,16 @@ class AppsPageController: BaseCollectionViewController {
 	let appGroupCell = "AppGroupCell"
 	let headerCellId = "headerId"
 	
+	let activityIndicatorView: UIActivityIndicatorView = {
+		let aiv = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+		aiv.color = .black
+		aiv.startAnimating()
+		aiv.hidesWhenStopped = true
+		return aiv
+	}()
+	
 	var appCategories = [AppCategory]()
+	var socialApps = [SocialApp]()
 	
 	//MARK: - Life Cycle
 	override func viewDidLoad() {
@@ -24,13 +33,13 @@ class AppsPageController: BaseCollectionViewController {
 		collectionView?.register(AppCategoryCell.self, forCellWithReuseIdentifier: appGroupCell)
 		collectionView?.register(AppsHeaderCollectionView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerCellId)
 		
+		view.addSubview(activityIndicatorView)
+		activityIndicatorView.fillSuperview()
 		fetchData()
 	}
 	
 	//MARK:- Network
 	private func fetchData() {
-		
-		
 		var group1: AppCategory?
 		var group2: AppCategory?
 		var group3: AppCategory?
@@ -57,7 +66,7 @@ class AppsPageController: BaseCollectionViewController {
 			dispatchGroup.leave()
 			
 			if let error = error {
-				print("Failed to fetch games: ", error)
+				print("Failed to fetch fetchTopGrossing: ", error)
 				return
 			}
 			
@@ -65,19 +74,36 @@ class AppsPageController: BaseCollectionViewController {
 		}//END APIService
 		
 		dispatchGroup.enter()
-		APIService.shared.fetchAppCategory(for: "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-free/all/50/explicit.json") { (appCategory, error) in
+		APIService.shared.fetchAppCategory(for: "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-free/all/25/non-explicit.json") { (appCategory, error) in
 			
 			dispatchGroup.leave()
 			
 			if let error = error {
-				print("Failed to fetch games: ", error)
+				print("Failed to fetch Top Free: ", error)
 				return
 			}
 			group3 = appCategory
 		}//END APIService
 		
+		
+		dispatchGroup.enter()
+		APIService.shared.fetchSocialApps { (apps, error) in
+			dispatchGroup.leave()
+			if let error = error {
+				print("Failed to fetch Social Apps: ", error)
+				return
+			}
+			
+			self.socialApps = apps ?? []
+			
+		}
+		
+		
 		//Completion
 		dispatchGroup.notify(queue: .main) {
+			
+			self.activityIndicatorView.stopAnimating()
+			
 			if let group = group1 {
 				self.appCategories.append(group)
 			}
@@ -90,15 +116,17 @@ class AppsPageController: BaseCollectionViewController {
 			self.collectionView?.reloadData()
 		}
 		
-	}//END fetchDAta
+	}//END fetchData
 	
 	
 	//MARK:- Collection View Data Source
 	// Header cell
 	override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		
-		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellId, for: indexPath)
+		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellId, for: indexPath) as! AppsHeaderCollectionView
 		
+		header.appHeaderHorizontalController.socialApps = self.socialApps
+		header.appHeaderHorizontalController.collectionView?.reloadData()
 		return header
 	}
 	
