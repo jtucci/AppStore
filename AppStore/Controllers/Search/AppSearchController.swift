@@ -81,7 +81,7 @@ extension AppSearchController: UISearchBarDelegate {
 					return
 				}
 				
-				self.appResults = results
+				self.appResults = results?.results ?? []
 				DispatchQueue.main.async {
 					self.collectionView?.reloadData()
 				}
