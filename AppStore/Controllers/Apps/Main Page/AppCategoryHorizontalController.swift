@@ -15,6 +15,8 @@ class AppCategoryHorizontalController: HorizontalSnappingCollectionViewControlle
 	
 	var appCategory: AppCategory?
 	
+	var didSelectHandler: ((FeedResult) -> ())?
+	
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -40,6 +42,13 @@ class AppCategoryHorizontalController: HorizontalSnappingCollectionViewControlle
 		return cell
 	}
 	
+	//MARK:- Collection View Selection
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		if let app = appCategory?.feed.results[indexPath.item] {
+			didSelectHandler!(app)
+		}
+		
+	}
 	
 }
 
