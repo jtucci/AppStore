@@ -228,6 +228,15 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F0D22DA02234858F007E619A /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				F0D22D652232EF61007E619A /* BaseTabBarController.swift */,
+				F0D22D8222342DBA007E619A /* BaseCollectionViewController.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
 		F0E788582232E49700E77A82 = {
 			isa = PBXGroup;
 			children = (
@@ -279,8 +288,7 @@
 		F0E788842232E4B900E77A82 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F0D22D652232EF61007E619A /* BaseTabBarController.swift */,
-				F0D22D8222342DBA007E619A /* BaseCollectionViewController.swift */,
+				F0D22DA02234858F007E619A /* Root */,
 				F0D22D7F22342C27007E619A /* Apps */,
 				F0D22D8022342C33007E619A /* Search */,
 			);

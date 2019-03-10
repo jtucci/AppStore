@@ -14,7 +14,7 @@ class AppsPageController: BaseCollectionViewController {
 	let appGroupCell = "AppGroupCell"
 	let headerCellId = "headerId"
 	
-	var editorsChoiceGames: AppCategory?
+	var appCategories = [AppCategory]()
 	
 	//MARK: - Life Cycle
 	override func viewDidLoad() {
@@ -29,18 +29,66 @@ class AppsPageController: BaseCollectionViewController {
 	
 	//MARK:- Network
 	private func fetchData() {
+		
+		
+		var group1: AppCategory?
+		var group2: AppCategory?
+		var group3: AppCategory?
+		
+		//Used to sync data fetches
+		var dispatchGroup = DispatchGroup()
+		
+		dispatchGroup.enter()
 		APIService.shared.fetchGames { (appCategory, error) in
+			
+			dispatchGroup.leave()
+			
+			if let error = error {
+				print("Failed to fetch games: ", error)
+				return
+			}
+			group1 = appCategory
+			
+		}//END APIService
+		
+		dispatchGroup.enter()
+		APIService.shared.fetchTopGrossing { (appCategory, error) in
+			
+			dispatchGroup.leave()
+			
 			if let error = error {
 				print("Failed to fetch games: ", error)
 				return
 			}
 			
-			self.editorsChoiceGames = appCategory
-			DispatchQueue.main.async {
-				self.collectionView?.reloadData()
-			}//END DispatchQueue
-			
+			group2 = appCategory
 		}//END APIService
+		
+		dispatchGroup.enter()
+		APIService.shared.fetchAppCategory(for: "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-free/all/50/explicit.json") { (appCategory, error) in
+			
+			dispatchGroup.leave()
+			
+			if let error = error {
+				print("Failed to fetch games: ", error)
+				return
+			}
+			group3 = appCategory
+		}//END APIService
+		
+		//Completion
+		dispatchGroup.notify(queue: .main) {
+			if let group = group1 {
+				self.appCategories.append(group)
+			}
+			if let group = group2 {
+				self.appCategories.append(group)
+			}
+			if let group = group3 {
+				self.appCategories.append(group)
+			}
+			self.collectionView?.reloadData()
+		}
 		
 	}//END fetchDAta
 	
@@ -57,14 +105,16 @@ class AppsPageController: BaseCollectionViewController {
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appGroupCell, for: indexPath) as! AppCategoryCell
 		
-		cell.titleLabel.text = editorsChoiceGames?.feed.title
-		cell.horizontalController.appCategory = editorsChoiceGames
+		let category = appCategories[indexPath.item]
+		
+		cell.titleLabel.text = category.feed.title
+		cell.horizontalController.appCategory = category
 		cell.horizontalController.collectionView?.reloadData()
 		return cell
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 1
+		return appCategories.count
 	}
 
 }

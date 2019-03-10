@@ -38,9 +38,24 @@ class APIService {
 		}.resume()
 	}
 	
-	func fetchGames(completion: @escaping (AppCategory?	, Error?) -> ()) {
+	func fetchTopGrossing(completion: @escaping (AppCategory?	, Error?) -> ()) {
+		let urlString = "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-grossing/all/50/explicit.json"
 		
-		guard let url = URL(string: "https://rss.itunes.apple.com/api/v1/us/ios-apps/new-games-we-love/all/50/non-explicit.json") else { return }
+		fetchAppCategory(for: urlString, completion: completion)
+		
+	} // END fetchTopGrossing
+	
+	func fetchGames(completion: @escaping (AppCategory?	, Error?) -> ()) {
+		let urlString = "https://rss.itunes.apple.com/api/v1/us/ios-apps/new-games-we-love/all/50/explicit.json"
+		
+		fetchAppCategory(for: urlString, completion: completion)
+		 
+	} // END fetchTopGrossing
+	
+	//MARK:- Helper
+	func fetchAppCategory(for urlString: String, completion: @escaping (AppCategory?, Error?) -> Void) {
+		
+		guard let url = URL(string: urlString) else { return }
 		
 		URLSession.shared.dataTask(with: url) { (data, response, error) in
 			if let error = error {
@@ -58,7 +73,7 @@ class APIService {
 				print("Failed to decode json: ", jsonErr)
 				completion(nil, jsonErr)
 			}
-		}.resume() //END URLSession
+			}.resume() //END URLSession
 		
-	} // END fetchGames
+	}
 }
