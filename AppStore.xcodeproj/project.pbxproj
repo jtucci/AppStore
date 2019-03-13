@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		666960E408B5F4F5AF789F1A /* Pods_AppStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2815186262C5FE7F3EE92719 /* Pods_AppStore.framework */; };
 		E0B56C9632B18C40EF3A8948 /* Pods_AppStoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87205C7311B923369C36C5A0 /* Pods_AppStoreTests.framework */; };
+		F03CA09A2239623B005161C0 /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CA0992239623B005161C0 /* PreviewCell.swift */; };
+		F03CA09C223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CA09B223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift */; };
 		F0D22D662232EF61007E619A /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D652232EF61007E619A /* BaseTabBarController.swift */; };
 		F0D22D682232F9EA007E619A /* AppSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D672232F9EA007E619A /* AppSearchController.swift */; };
 		F0D22D6B2233005D007E619A /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D6A2233005D007E619A /* SearchResultCell.swift */; };
@@ -59,6 +61,8 @@
 		A7BCAC29015F6620A992EDA4 /* Pods-AppStoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppStoreTests/Pods-AppStoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B021A2BD08E024684223FCC8 /* Pods-AppStoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppStoreTests/Pods-AppStoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		D224758685B60B72CA7EA1C4 /* Pods-AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppStore/Pods-AppStore.debug.xcconfig"; sourceTree = "<group>"; };
+		F03CA0992239623B005161C0 /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
+		F03CA09B223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenShotsHorizontalController.swift; sourceTree = "<group>"; };
 		F0D22D652232EF61007E619A /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		F0D22D672232F9EA007E619A /* AppSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchController.swift; sourceTree = "<group>"; };
 		F0D22D6A2233005D007E619A /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
@@ -278,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				F0D22DAB2235A224007E619A /* AppDetailController.swift */,
+				F03CA09B223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				F0D22DAE2235A647007E619A /* AppDetailCell.swift */,
+				F03CA0992239623B005161C0 /* PreviewCell.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -586,6 +592,7 @@
 				F0D22D952234584C007E619A /* AppsHeaderHorizontalController.swift in Sources */,
 				F0D22DAC2235A224007E619A /* AppDetailController.swift in Sources */,
 				F0D22D872234352B007E619A /* AppCategoryCell.swift in Sources */,
+				F03CA09C223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift in Sources */,
 				F0D22D9F22346B64007E619A /* AppCategory.swift in Sources */,
 				F0D22D9922345B1F007E619A /* AppsHeaderViewCell.swift in Sources */,
 				F0D22D6B2233005D007E619A /* SearchResultCell.swift in Sources */,
@@ -594,6 +601,7 @@
 				F0D22D8F2234420E007E619A /* UIImageView+Init.swift in Sources */,
 				F0D22DAF2235A647007E619A /* AppDetailCell.swift in Sources */,
 				F0D22D7322332CA8007E619A /* APIService.swift in Sources */,
+				F03CA09A2239623B005161C0 /* PreviewCell.swift in Sources */,
 				F0D22D9322344D30007E619A /* AppsHeaderCollectionView.swift in Sources */,
 				F0D22D8922343A67007E619A /* AppCategoryHorizontalController.swift in Sources */,
 				F0D22D6F223317E5007E619A /* VerticalStackView.swift in Sources */,

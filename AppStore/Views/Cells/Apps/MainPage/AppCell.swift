@@ -19,7 +19,9 @@ class AppCell: UICollectionViewCell {
 	//MARK:- Initialization
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		
+		imageView.layer.borderWidth = 0.5
+		imageView.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
+		imageView.clipsToBounds = true
 		setupCellLayout()
 	}
 	
