@@ -1,5 +1,5 @@
 //
-//  ReviewRowCell.swift
+//  ScreenShotCell.swift
 //  AppStore
 //
 //  Created by Jony Tucci on 3/14/19.
@@ -8,24 +8,17 @@
 
 import UIKit
 
-class ReviewRowCell: UICollectionViewCell {
+class ScreenShotCell: UICollectionViewCell {
 	
-	//MARK:- Properties
-	let reviewsController = ReviewsController()
-		
-	//MARK: - Initialization
+	let imageView = UIImageView(cornerRadius: 12)
+	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		
-		backgroundColor = .yellow
-		addSubview(reviewsController.view)
-		reviewsController.view.fillSuperview()
+		addSubview(imageView)
+		imageView.fillSuperview()
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
-	
-
 }

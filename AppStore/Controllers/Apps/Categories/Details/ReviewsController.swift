@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewsController: HorizontalSnappingCollectionViewController {
+final class ReviewsController: HorizontalSnappingCollectionViewController {
 	
 	//MARK:- Properties
 	let reviewCellId = "reviewCellId"
@@ -21,13 +21,17 @@ class ReviewsController: HorizontalSnappingCollectionViewController {
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		setupCollectionView()
+	}
+	
+	//MARK:- Setup
+	private func setupCollectionView() {
 		collectionView?.register(ReviewCell.self, forCellWithReuseIdentifier: reviewCellId)
-		
 		collectionView?.backgroundColor = .white
 		collectionView?.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
 	}
 	
+	//MARK:- Collection View Data Source
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return reviews?.feed.entry.count ?? 0
 	}

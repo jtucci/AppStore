@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchResultCell: UICollectionViewCell {
+final class SearchResultCell: UICollectionViewCell {
 	
 	//MARK:- Properties
 	var appResult: Result! {

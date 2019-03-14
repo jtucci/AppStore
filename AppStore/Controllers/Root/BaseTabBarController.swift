@@ -14,7 +14,6 @@ class BaseTabBarController: UITabBarController {
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		setupViewControllers()
 	}
 	

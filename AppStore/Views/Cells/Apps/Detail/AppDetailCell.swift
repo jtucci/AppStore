@@ -8,11 +8,15 @@
 
 import UIKit
 
-class AppDetailCell: UICollectionViewCell {
-	
+final class AppDetailCell: UICollectionViewCell {
 	
 	//MARK:- Properties
-	
+	let appIconImageView = UIImageView(cornerRadius: 16)
+	let nameLabel = UILabel(text: "Name", font: .boldSystemFont(ofSize: 24), numberOfLines: 2)
+	let priceButton = UIButton(title: "$4.99")
+	let whatsNewLabel = UILabel(text: "What's New", font: .boldSystemFont(ofSize: 20))
+	let releaseNotesLabel = UILabel(text: "Release Notes", font: .systemFont(ofSize: 16), numberOfLines: 0)
+	 
 	var app: Result! {
 		didSet {
 			nameLabel.text = app?.trackName
@@ -22,32 +26,10 @@ class AppDetailCell: UICollectionViewCell {
 		}
 	}
 	
-	let appIconImageView = UIImageView(cornerRadius: 16)
-	let nameLabel = UILabel(text: "Name", font: .boldSystemFont(ofSize: 24), numberOfLines: 2)
-	let priceButton = UIButton(title: "$4.99")
-	let whatsNewLabel = UILabel(text: "What's New", font: .boldSystemFont(ofSize: 20))
-	let releaseNotesLabel = UILabel(text: "Release Notes", font: .systemFont(ofSize: 16), numberOfLines: 0)
-	
-	
-
 	//MARK:- Initialization
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		
-		//Icon Setup
-		appIconImageView.constrainWidth(constant: 140)
-		appIconImageView.constrainHeight(constant: 140)
-		appIconImageView.layer.borderWidth = 0.5
-		appIconImageView.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
-		appIconImageView.clipsToBounds = true
-		// Button Setup
-		priceButton.backgroundColor = #colorLiteral(red: 0.01568627451, green: 0.4588235294, blue: 0.9529411765, alpha: 1)
-		priceButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-		priceButton.setTitleColor(.white, for: .normal)
-		priceButton.constrainHeight(constant: 32)
-		priceButton.constrainWidth(constant: 80)
-		priceButton.layer.cornerRadius = 32 / 2
-		
+		setupProperties()
 		setupLayout()
 	}
 	
@@ -55,8 +37,26 @@ class AppDetailCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	//MARK:-Setup Layou
+	//MARK:-Setup
+	private func setupProperties() {
+		//Icon Setup
+		appIconImageView.layer.borderWidth = 0.5
+		appIconImageView.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
+		appIconImageView.clipsToBounds = true
+		// Button Setup
+		priceButton.backgroundColor = #colorLiteral(red: 0.01568627451, green: 0.4588235294, blue: 0.9529411765, alpha: 1)
+		priceButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+		priceButton.setTitleColor(.white, for: .normal)
+		priceButton.layer.cornerRadius = 32 / 2
+	}
+	
 	private func setupLayout() {
+		
+		appIconImageView.constrainWidth(constant: 140)
+		appIconImageView.constrainHeight(constant: 140)
+		
+		priceButton.constrainHeight(constant: 32)
+		priceButton.constrainWidth(constant: 80)
 		
 		// NAME INFO PRICE VERTICAL STACK
 		let nameInfoPriceStackView = UIStackView(arrangedSubviews: [

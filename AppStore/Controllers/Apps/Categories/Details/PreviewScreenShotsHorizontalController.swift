@@ -8,8 +8,9 @@
 
 import UIKit
 
-class PreviewScreenShotsHorizontalController: HorizontalSnappingCollectionViewController {
+final class PreviewScreenShotsHorizontalController: HorizontalSnappingCollectionViewController {
 	
+	//MARK:- Properties
 	let screenShotCellId = "screenShotCell"
 	var app: Result? {
 		didSet {
@@ -17,28 +18,19 @@ class PreviewScreenShotsHorizontalController: HorizontalSnappingCollectionViewCo
 		}
 	}
 	
-	class ScreenShotCell: UICollectionViewCell {
-		
-		let imageView = UIImageView(cornerRadius: 12)
-		
-		override init(frame: CGRect) {
-			super.init(frame: frame)
-			addSubview(imageView)
-			imageView.fillSuperview()
-		}
-		
-		required init?(coder aDecoder: NSCoder) {
-			fatalError("init(coder:) has not been implemented")
-		}
-	}
 	
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
+		super.viewDidLoad()
+		setupCollectionView()
+	}
+	
+	//MARK:- Setup
+	private func setupCollectionView() {
 		collectionView?.backgroundColor = .white
 		collectionView?.register(ScreenShotCell.self, forCellWithReuseIdentifier: screenShotCellId)
 		collectionView?.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
 	}
-	
 	
 	//MARK:- Collection View Data Source
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -62,14 +54,6 @@ extension PreviewScreenShotsHorizontalController: UICollectionViewDelegateFlowLa
 		return CGSize(width: 250, height: view.frame.height)
 		
 	}
-	
-//	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//		return 10
-//	}
-//
-//	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//		return .init(top: 12, left: 16, bottom: 12, right: 16)
-//	}
 	
 }
 

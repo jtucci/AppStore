@@ -9,11 +9,10 @@
 import UIKit
 import SDWebImage
 
-class AppSearchController: BaseCollectionViewController {
+final class AppSearchController: BaseCollectionViewController {
 
-	
 	//MARK:- Properties
-	private let cellId = "cell"
+	private let searchResultCellId = "searchCell"
 	private var appResults = [Result]()
 	private let searchController = UISearchController(searchResultsController: nil)
 	private var timer: Timer? // Used to throttle search results when typing
@@ -21,15 +20,16 @@ class AppSearchController: BaseCollectionViewController {
 	//MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-		
-		collectionView?.backgroundColor = .white
-		collectionView?.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
-		
+		setupCollectionView()
 		setupSearchBar()
     }
 	
-	
 	//MARK:- Setup
+	private func setupCollectionView() {
+		collectionView?.backgroundColor = .white
+		collectionView?.register(SearchResultCell.self, forCellWithReuseIdentifier: searchResultCellId)
+	}
+	
 	private func setupSearchBar() {
 		definesPresentationContext = true
 		navigationItem.searchController = self.searchController
@@ -41,10 +41,9 @@ class AppSearchController: BaseCollectionViewController {
 	
 	//MARK:- Collection View Delegate
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchResultCellId, for: indexPath) as! SearchResultCell
 		let appResult = appResults[indexPath.item]
 		cell.appResult = appResult
-
 		return cell
 	}
 	
@@ -63,11 +62,8 @@ class AppSearchController: BaseCollectionViewController {
 extension AppSearchController: UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		
 		return CGSize(width: view.frame.width, height: 300)
-		
-	}
-	
+	}	
 }
 
 //MARK:- Search Bar Delegate

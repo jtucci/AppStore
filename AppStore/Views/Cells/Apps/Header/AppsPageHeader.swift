@@ -8,8 +8,8 @@
 
 import UIKit
 
-
-class AppsHeaderCollectionView: UICollectionReusableView {
+/// Header view for the Apps Page 
+final class AppsPageHeader: UICollectionReusableView {
 	
 	//MARK:- Properties 
 	let appHeaderHorizontalController = AppsHeaderHorizontalController()
@@ -17,7 +17,6 @@ class AppsHeaderCollectionView: UICollectionReusableView {
 	//MARK:- Initialization
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		
 		addSubview(appHeaderHorizontalController.view)
 		appHeaderHorizontalController.view.fillSuperview()
 	}

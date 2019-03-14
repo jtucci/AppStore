@@ -9,8 +9,7 @@
 import UIKit
 
 
-class AppDetailController: BaseCollectionViewController {
-	
+final class AppDetailController: BaseCollectionViewController {
 	
 	//MARK:- Properties
 	let topDetailCellId = "topDetailCell"
@@ -37,23 +36,26 @@ class AppDetailController: BaseCollectionViewController {
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		navigationItem.largeTitleDisplayMode = .never
+		setupCollectionView()
+		fetchData()
+	}
+	
+	//MARK:- setup
+	private func setupCollectionView() {
 		collectionView?.backgroundColor = .white
 		
 		//Top Cell (icon, name, description, price)
 		collectionView?.register(AppDetailCell.self, forCellWithReuseIdentifier: topDetailCellId)
 		
-		//Preview cell
-		collectionView?.register(PreviewCell.self, forCellWithReuseIdentifier: previewDetailCellId)
+		//Preview Row cell
+		collectionView?.register(PreviewRowCell.self, forCellWithReuseIdentifier: previewDetailCellId)
 		
-		// Review Cell
+		// Review Row Cell
 		collectionView?.register(ReviewRowCell.self, forCellWithReuseIdentifier: reviewCellId)
 		
-		navigationItem.largeTitleDisplayMode = .never
-		
-		fetchData()
 	}
 	
-	//MARK:- setup
 	private func fetchData() {
 		// Retrieves app info (name, price, preview images)
 		let urlString = "https://itunes.apple.com/lookup?id=\(appId)"
@@ -92,7 +94,7 @@ class AppDetailController: BaseCollectionViewController {
 			cell.app = app
 			return cell
 		} else if indexPath.item == 1{
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: previewDetailCellId, for: indexPath) as! PreviewCell
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: previewDetailCellId, for: indexPath) as! PreviewRowCell
 			cell.horizontalController.app = self.app
 			return cell
 		} else {

@@ -9,17 +9,15 @@
 import UIKit
 
 /// Contains a nested collection of app cells grouped by category
-class AppCategoryCell: UICollectionViewCell {
+final class AppCategoryCell: UICollectionViewCell {
 	
 	//MARK:- Properties
 	let titleLabel = UILabel(text: "Add Section", font: .boldSystemFont(ofSize: 30))
-
 	let horizontalController = AppCategoryHorizontalController()
 	
 	//MARK:- Initialization
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-
 		setupCellLayout()
 	}
 	
@@ -29,8 +27,6 @@ class AppCategoryCell: UICollectionViewCell {
 	
 	//MARK:- Setup
 	private func setupCellLayout() {
-		
-		
 		addSubview(titleLabel)
 		titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 0, right: 0))
 		addSubview(horizontalController.view)

@@ -8,22 +8,24 @@
 
 import UIKit
 
-class AppCategoryHorizontalController: HorizontalSnappingCollectionViewController {
+final class AppCategoryHorizontalController: HorizontalSnappingCollectionViewController {
 	
 	//MARK:- Properties
 	let appHorizontalCellId = "AppHorizontalCell"
-	
 	var appCategory: AppCategory?
-	
 	var didSelectHandler: ((FeedResult) -> ())?
 	
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		setupCollectionView()
+	}
+	
+	//MARK:- Setup
+	private func setupCollectionView() {
 		collectionView?.backgroundColor = .white
 		collectionView?.register(AppCell.self, forCellWithReuseIdentifier: appHorizontalCellId)
 		collectionView?.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
-
 	}
 	
 	//MARK:- Collection View Data Source 

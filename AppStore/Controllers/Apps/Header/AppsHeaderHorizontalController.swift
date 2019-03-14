@@ -8,19 +8,22 @@
 
 import UIKit
 
-class AppsHeaderHorizontalController: HorizontalSnappingCollectionViewController {
+final class AppsHeaderHorizontalController: HorizontalSnappingCollectionViewController {
 	
 	//MARK:- Properties
-	let cellId = "CellId"
-	
+	let headerCellId = "headerCell"
 	var socialApps = [SocialApp]()
 	
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		setupCollectionView()
+	}
+	
+	//MARK:- Setup
+	private func setupCollectionView(){
 		collectionView?.backgroundColor = .white
-		
-		collectionView?.register(AppsHeaderCell.self, forCellWithReuseIdentifier: cellId)
+		collectionView?.register(AppsHeaderCell.self, forCellWithReuseIdentifier: headerCellId)
 		collectionView?.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
 	}
 	
@@ -31,9 +34,8 @@ class AppsHeaderHorizontalController: HorizontalSnappingCollectionViewController
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppsHeaderCell
-		let app = self.socialApps[indexPath.item]
-		
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: headerCellId, for: indexPath) as! AppsHeaderCell
+		let app = self.socialApps[indexPath.item]		
 		cell.companyLabel.text = app.name
 		cell.titleLabel.text = app.tagline
 		cell.imageView.sd_setImage(with: URL(string: app.imageUrl))
@@ -46,13 +48,10 @@ class AppsHeaderHorizontalController: HorizontalSnappingCollectionViewController
 extension AppsHeaderHorizontalController: UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
 		return CGSize(width: view.frame.width - 48, height: view.frame.height)
-		
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 		return .init(top: 0, left: 16 , bottom: 0, right: 16)
 	}
-	
 }

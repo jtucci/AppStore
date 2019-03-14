@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewCell: UICollectionViewCell {
+final class ReviewCell: UICollectionViewCell {
 	
 	//MARK:- Properties
 	let titleLabel = UILabel(text: "Review Title", font: UIFont.boldSystemFont(ofSize: 18))
@@ -32,12 +32,22 @@ class ReviewCell: UICollectionViewCell {
 	//MARK:- Initialization
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		
+		setupProperties()
+		setupLayout()
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+	//MARK:- Setup
+	private func setupProperties() {
 		backgroundColor = #colorLiteral(red: 0.9479298858, green: 0.9479298858, blue: 0.9479298858, alpha: 1)
 		layer.cornerRadius = 16
 		clipsToBounds = true
-		
-		
+	}
+	
+	private func setupLayout() {
 		titleLabel.setContentCompressionResistancePriority(.init(0), for: .horizontal)
 		authorLabel.textAlignment = .right
 		
@@ -48,16 +58,12 @@ class ReviewCell: UICollectionViewCell {
 			titleAuthorStackView,
 			starsStackView,
 			bodyLabel
-		])
+			])
 		rootStackView.axis = .vertical
 		rootStackView.spacing = 12
 		
 		
 		addSubview(rootStackView)
 		rootStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 20, left: 20, bottom: 20, right: 20))
-	}
-	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
 	}
 }

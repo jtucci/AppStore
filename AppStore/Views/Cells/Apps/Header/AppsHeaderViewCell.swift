@@ -8,17 +8,17 @@
 
 import UIKit
 
-class AppsHeaderCell: UICollectionViewCell {
+/// Cell within the header for Apps page
+final class AppsHeaderCell: UICollectionViewCell {
 	
 	//MARK:- Properties
 	let companyLabel = UILabel(text: "FaceBook", font: .boldSystemFont(ofSize: 12))
-	let titleLabel = UILabel(text: "Keeping up with freinds is faster than ever", font: .systemFont(ofSize: 24))
+	let titleLabel = UILabel(text: "Keeping up with freinds is faster than ever", font: .systemFont(ofSize: 24), numberOfLines: 2)
 	let imageView = UIImageView(cornerRadius: 8)
 	
 	//MARK:- Initialization
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		titleLabel.numberOfLines = 2
 		setupCellLayout()
 	}
 	
