@@ -15,6 +15,7 @@ class ReviewCell: UICollectionViewCell {
 	let authorLabel = UILabel(text: "Author", font: UIFont.systemFont(ofSize: 16))
 	let starsLabel = UILabel(text: "Stars", font: UIFont.systemFont(ofSize: 14))
 	let bodyLabel = UILabel(text: "Review body\nReview body\nReview body\n", font: UIFont.systemFont(ofSize: 16), numberOfLines: 0)
+	
 	//MARK:- Initialization
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -23,7 +24,12 @@ class ReviewCell: UICollectionViewCell {
 		layer.cornerRadius = 16
 		clipsToBounds = true
 		
-		let titleAuthorStackView = UIStackView(arrangedSubviews: [titleLabel, UIView(), authorLabel])
+		
+		titleLabel.setContentCompressionResistancePriority(.init(0), for: .horizontal)
+		authorLabel.textAlignment = .right
+		
+		let titleAuthorStackView = UIStackView(arrangedSubviews: [titleLabel, authorLabel])
+		titleAuthorStackView.spacing = 8
 		
 		let rootStackView = UIStackView(arrangedSubviews: [
 			titleAuthorStackView,

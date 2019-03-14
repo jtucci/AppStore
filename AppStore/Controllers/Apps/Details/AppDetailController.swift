@@ -18,15 +18,34 @@ class AppDetailController: BaseCollectionViewController {
 	let reviewCellId = "reviewCellId"
 	
 	var app: Result?
+	var reviews: Reviews?
 	
 	var appId: String! {
 		didSet {
 			// appId set
 			print("APP ID: ",appId)
+			
+			// Retrieves app info (name, price, preview images)
 			let urlString = "https://itunes.apple.com/lookup?id=\(appId ?? "")"
 			APIService.shared.fetch(urlString: urlString) { (result: SearchResult?, error) in
 				let app = result?.results.first
 				self.app = app
+				DispatchQueue.main.async {
+					self.collectionView?.reloadData()
+				}
+			}
+			
+			// Retrieves app reviews
+			let reviewsUrl = "https://itunes.apple.com/rss/customerreviews/page=1/id=\(appId ?? "")/sortby=mostrecent/json?l=en&cc=us"
+			
+			print(reviewsUrl)
+			APIService.shared.fetch(urlString: reviewsUrl) { (reviews: Reviews?, error) in
+				if let error = error {
+					print("Could not fetch app reviews: ", error)
+					return
+				}
+				
+				self.reviews = reviews
 				DispatchQueue.main.async {
 					self.collectionView?.reloadData()
 				}
@@ -72,6 +91,7 @@ class AppDetailController: BaseCollectionViewController {
 			return cell
 		} else {
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewCellId, for: indexPath) as! ReviewRowCell
+			cell.reviewsController.reviews = self.reviews
 			return cell
 		}
 		
@@ -102,13 +122,7 @@ extension AppDetailController: UICollectionViewDelegateFlowLayout {
 		return .init(width: view.frame.width, height: height)
 	}
 	
-//	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//		return 10
-//	}
-//
-//	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//		return .init(top: 12, left: 16, bottom: 12, right: 16)
-//	}
+
 	
 }
 

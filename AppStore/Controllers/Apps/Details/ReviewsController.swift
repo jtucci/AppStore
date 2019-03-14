@@ -12,6 +12,11 @@ class ReviewsController: HorizontalSnappingCollectionViewController {
 	
 	//MARK:- Properties
 	let reviewCellId = "reviewCellId"
+	var reviews: Reviews? {
+		didSet {
+			collectionView?.reloadData()
+		}
+	}
 	
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
@@ -24,11 +29,16 @@ class ReviewsController: HorizontalSnappingCollectionViewController {
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 4
+		return reviews?.feed.entry.count ?? 0
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewCellId, for: indexPath) as! ReviewCell
+		let entry = reviews?.feed.entry[indexPath.item]
+		
+		cell.titleLabel.text = entry?.title.label
+		cell.authorLabel.text = entry?.author.name.label
+		cell.bodyLabel.text = entry?.content.label
 		return cell
 	}
 	
