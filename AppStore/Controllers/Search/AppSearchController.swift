@@ -77,7 +77,7 @@ extension AppSearchController: UISearchBarDelegate {
 			APIService.shared.fetchApps(searchTerm: searchText) { (results, error) in
 				
 				if let error = error {
-					print("Failed to fetch apps: ", error)
+					print("Failed to fetch apps in search page: ", error)
 					return
 				}
 				
