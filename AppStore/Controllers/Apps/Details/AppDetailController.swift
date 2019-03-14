@@ -37,8 +37,6 @@ class AppDetailController: BaseCollectionViewController {
 			
 			// Retrieves app reviews
 			let reviewsUrl = "https://itunes.apple.com/rss/customerreviews/page=1/id=\(appId ?? "")/sortby=mostrecent/json?l=en&cc=us"
-			
-			print(reviewsUrl)
 			APIService.shared.fetch(urlString: reviewsUrl) { (reviews: Reviews?, error) in
 				if let error = error {
 					print("Could not fetch app reviews: ", error)
@@ -122,7 +120,9 @@ extension AppDetailController: UICollectionViewDelegateFlowLayout {
 		return .init(width: view.frame.width, height: height)
 	}
 	
-
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+		return .init(top: 0, left: 0, bottom: 16, right: 0)
+	}
 	
 }
 
