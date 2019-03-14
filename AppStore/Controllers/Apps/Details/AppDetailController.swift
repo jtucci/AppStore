@@ -20,39 +20,19 @@ class AppDetailController: BaseCollectionViewController {
 	var app: Result?
 	var reviews: Reviews?
 	
-	var appId: String! {
-		didSet {
-			// appId set
-			print("APP ID: ",appId)
-			
-			// Retrieves app info (name, price, preview images)
-			let urlString = "https://itunes.apple.com/lookup?id=\(appId ?? "")"
-			APIService.shared.fetch(urlString: urlString) { (result: SearchResult?, error) in
-				let app = result?.results.first
-				self.app = app
-				DispatchQueue.main.async {
-					self.collectionView?.reloadData()
-				}
-			}
-			
-			// Retrieves app reviews
-			let reviewsUrl = "https://itunes.apple.com/rss/customerreviews/page=1/id=\(appId ?? "")/sortby=mostrecent/json?l=en&cc=us"
-			APIService.shared.fetch(urlString: reviewsUrl) { (reviews: Reviews?, error) in
-				if let error = error {
-					print("Could not fetch app reviews: ", error)
-					return
-				}
-				
-				self.reviews = reviews
-				DispatchQueue.main.async {
-					self.collectionView?.reloadData()
-				}
-			}
-		}
+	// dependency
+	fileprivate let appId: String		
+	
+	//MARK:- Initialization
+	// dependency injection
+	init(appId: String) {		
+		self.appId = appId
+		super.init()
 	}
 	
-	
-	
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 	
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
@@ -70,6 +50,34 @@ class AppDetailController: BaseCollectionViewController {
 		
 		navigationItem.largeTitleDisplayMode = .never
 		
+		fetchData()
+	}
+	
+	//MARK:- setup
+	private func fetchData() {
+		// Retrieves app info (name, price, preview images)
+		let urlString = "https://itunes.apple.com/lookup?id=\(appId)"
+		APIService.shared.fetch(urlString: urlString) { (result: SearchResult?, error) in
+			let app = result?.results.first
+			self.app = app
+			DispatchQueue.main.async {
+				self.collectionView?.reloadData()
+			}
+		}
+		
+		// Retrieves app reviews
+		let reviewsUrl = "https://itunes.apple.com/rss/customerreviews/page=1/id=\(appId)/sortby=mostrecent/json?l=en&cc=us"
+		APIService.shared.fetch(urlString: reviewsUrl) { (reviews: Reviews?, error) in
+			if let error = error {
+				print("Could not fetch app reviews: ", error)
+				return
+			}
+			
+			self.reviews = reviews
+			DispatchQueue.main.async {
+				self.collectionView?.reloadData()
+			}
+		}
 	}
 	
 	//MARK:- Collection View Data Source
