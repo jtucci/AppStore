@@ -52,6 +52,11 @@ class AppSearchController: BaseCollectionViewController {
 		return appResults.count
 	}
 	
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		let appId = String(appResults[indexPath.item].trackId)
+		let appDetailController = AppDetailController(appId: appId)
+		navigationController?.pushViewController(appDetailController, animated: true)
+	}
 }
 
 //MARK:- Collection View Flow Layout Delegate
