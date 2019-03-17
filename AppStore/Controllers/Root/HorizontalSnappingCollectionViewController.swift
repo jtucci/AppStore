@@ -15,7 +15,7 @@ class HorizontalSnappingCollectionViewController: UICollectionViewController {
 		let layout = SnappingCollectionViewFlowLayout()
 		layout.scrollDirection = .horizontal
 		super.init(collectionViewLayout: layout)
-		collectionView?.decelerationRate = UIScrollViewDecelerationRateFast
+		collectionView?.decelerationRate = UIScrollView.DecelerationRate.fast
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

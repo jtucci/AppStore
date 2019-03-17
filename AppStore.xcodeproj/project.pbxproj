@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		666960E408B5F4F5AF789F1A /* Pods_AppStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2815186262C5FE7F3EE92719 /* Pods_AppStore.framework */; };
 		E0B56C9632B18C40EF3A8948 /* Pods_AppStoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87205C7311B923369C36C5A0 /* Pods_AppStoreTests.framework */; };
+		F0261F73223D5EF8002F20A4 /* TodayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0261F72223D5EF8002F20A4 /* TodayController.swift */; };
+		F0261F75223D5F9A002F20A4 /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0261F74223D5F9A002F20A4 /* TodayCell.swift */; };
 		F03CA09A2239623B005161C0 /* PreviewRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CA0992239623B005161C0 /* PreviewRowCell.swift */; };
 		F03CA09C223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CA09B223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift */; };
 		F0D22D662232EF61007E619A /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D652232EF61007E619A /* BaseTabBarController.swift */; };
@@ -66,6 +68,8 @@
 		A7BCAC29015F6620A992EDA4 /* Pods-AppStoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppStoreTests/Pods-AppStoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B021A2BD08E024684223FCC8 /* Pods-AppStoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppStoreTests/Pods-AppStoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		D224758685B60B72CA7EA1C4 /* Pods-AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppStore/Pods-AppStore.debug.xcconfig"; sourceTree = "<group>"; };
+		F0261F72223D5EF8002F20A4 /* TodayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayController.swift; sourceTree = "<group>"; };
+		F0261F74223D5F9A002F20A4 /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
 		F03CA0992239623B005161C0 /* PreviewRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewRowCell.swift; sourceTree = "<group>"; };
 		F03CA09B223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenShotsHorizontalController.swift; sourceTree = "<group>"; };
 		F0D22D652232EF61007E619A /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
@@ -150,9 +154,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F0261F70223D560B002F20A4 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				F0261F72223D5EF8002F20A4 /* TodayController.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		F0261F71223D561E002F20A4 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				F0261F74223D5F9A002F20A4 /* TodayCell.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
 		F0D22D6922330037007E619A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F0261F71223D561E002F20A4 /* Today */,
 				F0D22D85223434FD007E619A /* Apps */,
 				F0D22D84223434EC007E619A /* Search */,
 			);
@@ -397,6 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				F0D22DA02234858F007E619A /* Root */,
+				F0261F70223D560B002F20A4 /* Today */,
 				F0D22D7F22342C27007E619A /* Apps */,
 				F0D22D8022342C33007E619A /* Search */,
 			);
@@ -517,9 +539,11 @@
 				TargetAttributes = {
 					F0E788602232E49700E77A82 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1010;
 					};
 					F0E788742232E49800E77A82 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1010;
 						TestTargetID = F0E788602232E49700E77A82;
 					};
 				};
@@ -630,6 +654,7 @@
 				F0D22DA222349BCB007E619A /* SocialApp.swift in Sources */,
 				F0D22D8D22344156007E619A /* UILabel+Init.swift in Sources */,
 				F0D22D9122344239007E619A /* UIButton+Init.swift in Sources */,
+				F0261F73223D5EF8002F20A4 /* TodayController.swift in Sources */,
 				F0D22D712233242E007E619A /* SearchResult.swift in Sources */,
 				F0D22D7E22342C22007E619A /* AppsPageController.swift in Sources */,
 				F0D22D6D2233099D007E619A /* UIView+Layout.swift in Sources */,
@@ -651,6 +676,7 @@
 				F0D22D8F2234420E007E619A /* UIImageView+Init.swift in Sources */,
 				F0E1DF38223ABF0C000BFF4B /* Reviews.swift in Sources */,
 				F0D22DAF2235A647007E619A /* AppDetailCell.swift in Sources */,
+				F0261F75223D5F9A002F20A4 /* TodayCell.swift in Sources */,
 				F0D22D7322332CA8007E619A /* APIService.swift in Sources */,
 				F03CA09A2239623B005161C0 /* PreviewRowCell.swift in Sources */,
 				F0E1DF32223AB0A5000BFF4B /* ReviewRowCell.swift in Sources */,
@@ -814,13 +840,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V3KUBC4QCP;
 				INFOPLIST_FILE = "$(SRCROOT)/AppStore/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonytucci.AppStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -833,13 +860,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V3KUBC4QCP;
 				INFOPLIST_FILE = "$(SRCROOT)/AppStore/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonytucci.AppStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -860,7 +888,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonytucci.AppStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppStore.app/AppStore";
 			};
@@ -882,7 +910,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonytucci.AppStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppStore.app/AppStore";
 			};

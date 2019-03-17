@@ -19,7 +19,7 @@ final class AppsPageController: BaseCollectionViewController {
 	var socialApps = [SocialApp]()
 	
 	let activityIndicatorView: UIActivityIndicatorView = {
-		let aiv = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+		let aiv = UIActivityIndicatorView(style: .whiteLarge)
 		aiv.color = .black
 		aiv.startAnimating()
 		aiv.hidesWhenStopped = true
@@ -43,7 +43,7 @@ final class AppsPageController: BaseCollectionViewController {
 	private func setupCollectionView() {
 		collectionView?.backgroundColor = .white
 		collectionView?.register(AppCategoryCell.self, forCellWithReuseIdentifier: appGroupCell)
-		collectionView?.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerCellId)
+		collectionView?.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerCellId)
 	}
 	
 	

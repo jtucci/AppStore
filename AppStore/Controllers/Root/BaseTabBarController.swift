@@ -22,7 +22,7 @@ class BaseTabBarController: UITabBarController {
 	private func setupViewControllers() {
 		
 		viewControllers = [
-			generateNavigationController(with: UIViewController(), title: "Today", image: #imageLiteral(resourceName: "today_icon")),
+			generateNavigationController(with: TodayController(), title: "Today", image: #imageLiteral(resourceName: "today_icon")),
 			generateNavigationController(with: AppsPageController(), title: "Apps", image: #imageLiteral(resourceName: "apps")),
 			generateNavigationController(with: AppSearchController(), title: "Search", image: #imageLiteral(resourceName: "search"))
 		]
