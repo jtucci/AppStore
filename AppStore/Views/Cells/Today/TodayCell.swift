@@ -10,13 +10,14 @@ import UIKit
 
 class TodayCell: UICollectionViewCell {
 	
+	//MARK:- Properties
 	let imageView = UIImageView(image: #imageLiteral(resourceName: "garden"))
 	
 	//MARK:- Initialization
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
-		backgroundColor = .blue
+		backgroundColor = .white
 		layer.cornerRadius = 16
 		addSubview(imageView)
 		imageView.contentMode = .scaleAspectFill
