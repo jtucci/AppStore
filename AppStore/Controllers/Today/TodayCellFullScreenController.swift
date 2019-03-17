@@ -12,6 +12,7 @@ class TodayCellFullScreenController: UITableViewController {
 	
 	//MARK:- Properties
 	var dismissHandler: (() -> ())?
+	var todayItem: TodayItem?
 	
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
@@ -19,6 +20,9 @@ class TodayCellFullScreenController: UITableViewController {
 		tableView.tableFooterView = UIView()
 		tableView.separatorStyle = .none
 		tableView.allowsSelection = false
+		let height = UIApplication.shared.statusBarFrame.height
+		tableView.contentInset = .init(top: 0, left: 0, bottom: height, right: 0)
+		tableView.contentInsetAdjustmentBehavior = .never
 	}
 	
 	//MARK:- TableView Data Source
@@ -31,6 +35,8 @@ class TodayCellFullScreenController: UITableViewController {
 		if indexPath.item == 0 {
 			let headerCell = TodayFullScreenHeaderCell()
 			headerCell.closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+			headerCell.todayCell.todayItem = todayItem
+			headerCell.todayCell.layer.cornerRadius = 0
 			return headerCell
 		}
 		

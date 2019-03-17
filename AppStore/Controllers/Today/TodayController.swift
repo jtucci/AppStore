@@ -12,6 +12,11 @@ class TodayController: BaseCollectionViewController {
 	
 	//MARK:- properties
 	private let todayCellId = "todayCellId"
+	private let items = [
+		TodayItem.init(category: "Life Hack", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps your need to intelligently organize your life the right way", backgroundColor: .white),
+		TodayItem.init(category: "Holidays", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9816228747, green: 0.9801788926, blue: 0.7363908887, alpha: 1))
+	]
+	
 	private var startingFrame: CGRect?
 	private var appFullScreenController: TodayCellFullScreenController!
 	
@@ -31,12 +36,12 @@ class TodayController: BaseCollectionViewController {
 	
 	//MARK:- Collection View Data Source
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 4
+		return items.count
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: todayCellId, for: indexPath) as! TodayCell
-		
+		cell.todayItem = items[indexPath.item]
 		return cell
 	}
 	
@@ -44,6 +49,8 @@ class TodayController: BaseCollectionViewController {
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		
 		let fullScreenController = TodayCellFullScreenController()
+		fullScreenController.todayItem = items[indexPath.row]
+		
 		let fullscreenView  = fullScreenController.view!
 		
 		fullScreenController.dismissHandler = {
@@ -55,7 +62,7 @@ class TodayController: BaseCollectionViewController {
 		addChild(fullScreenController)
 		self.appFullScreenController = fullScreenController
 		
-		
+		self.collectionView.isUserInteractionEnabled = false
 		
 		
 		// absolute coordinates of cell
@@ -89,6 +96,12 @@ class TodayController: BaseCollectionViewController {
 			self.view.layoutIfNeeded() // starts animation
 			
 			self.tabBarController?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
+			
+			guard let cell = self.appFullScreenController.tableView.cellForRow(at: [0,0]) as? TodayFullScreenHeaderCell else { return }
+			cell.todayCell.topConsraint.constant = 48
+			cell.layoutIfNeeded()
+			
+			
 		}, completion: nil)
 	}
 	
@@ -108,10 +121,14 @@ class TodayController: BaseCollectionViewController {
 			
 			self.tabBarController?.tabBar.transform = .identity
 			
+			guard let cell = self.appFullScreenController.tableView.cellForRow(at: [0,0]) as? TodayFullScreenHeaderCell else { return }
+			cell.todayCell.topConsraint.constant = 24
+			cell.layoutIfNeeded()
 			
 		}, completion: { _ in
 			self.appFullScreenController.view.removeFromSuperview()
 			self.appFullScreenController.removeFromParent()
+			self.collectionView.isUserInteractionEnabled = true
 		})
 	}
 	

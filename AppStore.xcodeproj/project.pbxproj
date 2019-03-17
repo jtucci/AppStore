@@ -16,6 +16,7 @@
 		F0B4BC98223EBA5B00C9D614 /* TodayCellFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B4BC97223EBA5B00C9D614 /* TodayCellFullScreenController.swift */; };
 		F0B4BC9A223EBD4D00C9D614 /* TodayFullScreenDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B4BC99223EBD4D00C9D614 /* TodayFullScreenDescriptionCell.swift */; };
 		F0B4BC9C223EE03900C9D614 /* TodayFullScreenHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B4BC9B223EE03900C9D614 /* TodayFullScreenHeaderCell.swift */; };
+		F0B4BC9F223EECA200C9D614 /* TodayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B4BC9E223EECA200C9D614 /* TodayItem.swift */; };
 		F0D22D662232EF61007E619A /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D652232EF61007E619A /* BaseTabBarController.swift */; };
 		F0D22D682232F9EA007E619A /* AppSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D672232F9EA007E619A /* AppSearchController.swift */; };
 		F0D22D6B2233005D007E619A /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D22D6A2233005D007E619A /* SearchResultCell.swift */; };
@@ -78,6 +79,7 @@
 		F0B4BC97223EBA5B00C9D614 /* TodayCellFullScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCellFullScreenController.swift; sourceTree = "<group>"; };
 		F0B4BC99223EBD4D00C9D614 /* TodayFullScreenDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayFullScreenDescriptionCell.swift; sourceTree = "<group>"; };
 		F0B4BC9B223EE03900C9D614 /* TodayFullScreenHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayFullScreenHeaderCell.swift; sourceTree = "<group>"; };
+		F0B4BC9E223EECA200C9D614 /* TodayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayItem.swift; sourceTree = "<group>"; };
 		F0D22D652232EF61007E619A /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		F0D22D672232F9EA007E619A /* AppSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchController.swift; sourceTree = "<group>"; };
 		F0D22D6A2233005D007E619A /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
@@ -175,6 +177,14 @@
 				F0261F74223D5F9A002F20A4 /* TodayCell.swift */,
 				F0B4BC99223EBD4D00C9D614 /* TodayFullScreenDescriptionCell.swift */,
 				F0B4BC9B223EE03900C9D614 /* TodayFullScreenHeaderCell.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		F0B4BC9D223EEC8900C9D614 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				F0B4BC9E223EECA200C9D614 /* TodayItem.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -453,6 +463,7 @@
 		F0E788872232E4F700E77A82 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F0B4BC9D223EEC8900C9D614 /* Today */,
 				F0E1DF3A223ADD17000BFF4B /* Apps */,
 				F0E1DF39223ADD08000BFF4B /* Search */,
 			);
@@ -658,6 +669,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B4BC9F223EECA200C9D614 /* TodayItem.swift in Sources */,
 				F0B4BC98223EBA5B00C9D614 /* TodayCellFullScreenController.swift in Sources */,
 				F0E788652232E49700E77A82 /* AppDelegate.swift in Sources */,
 				F0E1DF36223AB4DA000BFF4B /* ReviewCell.swift in Sources */,
