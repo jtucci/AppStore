@@ -20,6 +20,8 @@ class TodayAppListCell: BaseTodayCell {
 		didSet {
 			categoryLabel.text = todayItem.category
 			titleLabel.text = todayItem.title
+			appListController.results = todayItem.apps
+			appListController.collectionView.reloadData()
 		}
 	}
 	

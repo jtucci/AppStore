@@ -13,11 +13,21 @@ class TodayController: BaseCollectionViewController {
 	//MARK:- properties
 	static let cellSize: CGFloat = 500
 	
-	private let items = [
-		TodayItem.init(category: "Life Hack", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps your need to intelligently organize your life the right way", backgroundColor: .white, cellType: .single),
-		TodayItem.init(category: "Holidays", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9816228747, green: 0.9801788926, blue: 0.7363908887, alpha: 1), cellType: .single),
-		TodayItem.init(category: "THE DAILY LIST", title: "Test-Drive These CarPlay Apps", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple),
-	]
+//	private let items = [
+//		TodayItem.init(category: "Life Hack", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps your need to intelligently organize your life the right way", backgroundColor: .white, cellType: .single),
+//		TodayItem.init(category: "Holidays", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9816228747, green: 0.9801788926, blue: 0.7363908887, alpha: 1), cellType: .single),
+//		TodayItem.init(category: "THE DAILY LIST", title: "Test-Drive These CarPlay Apps", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple),
+//	]
+	
+	private var items = [TodayItem]()
+	private var activitityIndicatorView: UIActivityIndicatorView = {
+		let aiv = UIActivityIndicatorView(style: .whiteLarge)
+		aiv.color = .darkGray
+		aiv.startAnimating()
+		aiv.hidesWhenStopped = true
+		
+		return aiv
+	}()
 	
 	private var startingFrame: CGRect?
 	private var appFullScreenController: TodayCellFullScreenController!
@@ -30,6 +40,13 @@ class TodayController: BaseCollectionViewController {
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		// Activity Indicator
+		view.addSubview(activitityIndicatorView)
+		activitityIndicatorView.centerInSuperview()
+		
+		// Fetch Data
+		fetchData()
 		
 		navigationController?.isNavigationBarHidden = true
 		collectionView?.backgroundColor = #colorLiteral(red: 0.9534369111, green: 0.9458779693, blue: 0.9529135823, alpha: 1)
@@ -52,6 +69,54 @@ class TodayController: BaseCollectionViewController {
 		
 		return cell
 	}
+	
+	//MARK:- Network
+	
+	private func fetchData() {
+		let dispatchGroup = DispatchGroup()
+		var topGrossing: AppCategory?
+		var topGames: AppCategory?
+		
+		dispatchGroup.enter()
+		APIService.shared.fetchGames { (appCategory, error) in
+			dispatchGroup.leave()
+			if let error = error {
+				print("Failed to fetch games: ", error)
+				return
+			}
+			
+			topGames = appCategory
+			
+			
+		}//END APIService
+	
+		dispatchGroup.enter()
+		APIService.shared.fetchTopGrossing { (appCategory, error) in
+			dispatchGroup.leave()
+			if let error = error {
+				print("Failed to fetch top-grossing: ", error)
+				return
+			}
+			
+			topGrossing = appCategory
+		}//END APIService
+		
+		
+		// Completion Block
+		dispatchGroup.notify(queue: .main) {
+			print("Finished fetching today data")
+			self.activitityIndicatorView.stopAnimating()
+			
+			self.items = [
+				TodayItem.init(category: "THE DAILY LIST", title: topGrossing?.feed.title ?? "", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple, apps: topGrossing?.feed.results ?? []),
+				TodayItem.init(category: "THE DAILY LIST", title: topGames?.feed.title ?? "", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple, apps: topGames?.feed.results ?? []),
+				TodayItem.init(category: "Life Hack", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps your need to intelligently organize your life the right way", backgroundColor: .white, cellType: .single, apps: [])
+			]
+			
+			self.collectionView.reloadData()
+		}
+	}
+	
 	
 	//MARK:- Collection View Selection
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
