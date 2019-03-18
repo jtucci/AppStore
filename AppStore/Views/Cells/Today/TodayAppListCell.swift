@@ -10,6 +10,12 @@ import UIKit
 
 class TodayAppListCell: BaseTodayCell {
 	
+
+	//MARK:- Properties
+	let appListController = TodayAppListController()
+	let categoryLabel = UILabel(text: "Life Hack", font: .boldSystemFont(ofSize: 20))
+	let titleLabel = UILabel(text: "Utilizing your Time", font: .boldSystemFont(ofSize: 32), numberOfLines: 2)
+	
 	override var todayItem: TodayItem! {
 		didSet {
 			categoryLabel.text = todayItem.category
@@ -17,15 +23,10 @@ class TodayAppListCell: BaseTodayCell {
 		}
 	}
 	
-	//MARK:- Properties
-	let categoryLabel = UILabel(text: "Life Hack", font: .boldSystemFont(ofSize: 20))
-	let titleLabel = UILabel(text: "Utilizing your Time", font: .boldSystemFont(ofSize: 32), numberOfLines: 2)
-	let appListController = UIViewController()
 	
 	//MARK:- Initialziation
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		appListController.view.backgroundColor = .red
 		
 		backgroundColor = .white
 		layer.cornerRadius = 16

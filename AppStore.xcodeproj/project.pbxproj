@@ -13,6 +13,8 @@
 		F0261F75223D5F9A002F20A4 /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0261F74223D5F9A002F20A4 /* TodayCell.swift */; };
 		F027AEB9223FED3900D61664 /* TodayAppListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F027AEB8223FED3900D61664 /* TodayAppListCell.swift */; };
 		F027AEBB223FF47D00D61664 /* BaseTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F027AEBA223FF47D00D61664 /* BaseTodayCell.swift */; };
+		F027AEBD223FF68200D61664 /* TodayAppListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F027AEBC223FF68200D61664 /* TodayAppListController.swift */; };
+		F027AEBF223FF7D000D61664 /* TodayAppCell .swift in Sources */ = {isa = PBXBuildFile; fileRef = F027AEBE223FF7D000D61664 /* TodayAppCell .swift */; };
 		F03CA09A2239623B005161C0 /* PreviewRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CA0992239623B005161C0 /* PreviewRowCell.swift */; };
 		F03CA09C223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CA09B223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift */; };
 		F0B4BC98223EBA5B00C9D614 /* TodayCellFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B4BC97223EBA5B00C9D614 /* TodayCellFullScreenController.swift */; };
@@ -78,6 +80,8 @@
 		F0261F74223D5F9A002F20A4 /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
 		F027AEB8223FED3900D61664 /* TodayAppListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayAppListCell.swift; sourceTree = "<group>"; };
 		F027AEBA223FF47D00D61664 /* BaseTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTodayCell.swift; sourceTree = "<group>"; };
+		F027AEBC223FF68200D61664 /* TodayAppListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayAppListController.swift; sourceTree = "<group>"; };
+		F027AEBE223FF7D000D61664 /* TodayAppCell .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodayAppCell .swift"; sourceTree = "<group>"; };
 		F03CA0992239623B005161C0 /* PreviewRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewRowCell.swift; sourceTree = "<group>"; };
 		F03CA09B223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenShotsHorizontalController.swift; sourceTree = "<group>"; };
 		F0B4BC97223EBA5B00C9D614 /* TodayCellFullScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCellFullScreenController.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 			children = (
 				F0261F72223D5EF8002F20A4 /* TodayController.swift */,
 				F0B4BC97223EBA5B00C9D614 /* TodayCellFullScreenController.swift */,
+				F027AEBC223FF68200D61664 /* TodayAppListController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				F0B4BC99223EBD4D00C9D614 /* TodayFullScreenDescriptionCell.swift */,
 				F0B4BC9B223EE03900C9D614 /* TodayFullScreenHeaderCell.swift */,
 				F027AEB8223FED3900D61664 /* TodayAppListCell.swift */,
+				F027AEBE223FF7D000D61664 /* TodayAppCell .swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -699,6 +705,7 @@
 				F0D22D9F22346B64007E619A /* AppCategory.swift in Sources */,
 				F0D22D9922345B1F007E619A /* AppsHeaderViewCell.swift in Sources */,
 				F0D22D6B2233005D007E619A /* SearchResultCell.swift in Sources */,
+				F027AEBF223FF7D000D61664 /* TodayAppCell .swift in Sources */,
 				F0B4BC9C223EE03900C9D614 /* TodayFullScreenHeaderCell.swift in Sources */,
 				F0E1DF34223AB25C000BFF4B /* ReviewsController.swift in Sources */,
 				F027AEBB223FF47D00D61664 /* BaseTodayCell.swift in Sources */,
@@ -709,6 +716,7 @@
 				F0D22DAF2235A647007E619A /* AppDetailCell.swift in Sources */,
 				F0261F75223D5F9A002F20A4 /* TodayCell.swift in Sources */,
 				F0D22D7322332CA8007E619A /* APIService.swift in Sources */,
+				F027AEBD223FF68200D61664 /* TodayAppListController.swift in Sources */,
 				F03CA09A2239623B005161C0 /* PreviewRowCell.swift in Sources */,
 				F027AEB9223FED3900D61664 /* TodayAppListCell.swift in Sources */,
 				F0E1DF32223AB0A5000BFF4B /* ReviewRowCell.swift in Sources */,
