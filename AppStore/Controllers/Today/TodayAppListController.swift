@@ -47,6 +47,7 @@ class TodayAppListController: BaseCollectionViewController {
 		if mode == .fullScreen {
 			view.addSubview(closeButton)
 			closeButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 20, left: 0, bottom: 0, right: 16), size: .init(width: 44, height: 44))
+			navigationController?.isNavigationBarHidden = true
 		} else {
 			collectionView.isScrollEnabled = false
 		}
@@ -73,6 +74,14 @@ class TodayAppListController: BaseCollectionViewController {
 		cell.app = results[indexPath.item]
 		return cell
 	}
+	
+	//MARK:- Collection View Selection
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		let appId = self.results[indexPath.item].id
+		let appDetailController = AppDetailController(appId: appId)
+		navigationController?.pushViewController(appDetailController, animated: true)
+	}
+	
 }
 
 //MARK:- Collection View Layout

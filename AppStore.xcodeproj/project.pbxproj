@@ -15,6 +15,7 @@
 		F027AEBB223FF47D00D61664 /* BaseTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F027AEBA223FF47D00D61664 /* BaseTodayCell.swift */; };
 		F027AEBD223FF68200D61664 /* TodayAppListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F027AEBC223FF68200D61664 /* TodayAppListController.swift */; };
 		F027AEBF223FF7D000D61664 /* TodayAppCell .swift in Sources */ = {isa = PBXBuildFile; fileRef = F027AEBE223FF7D000D61664 /* TodayAppCell .swift */; };
+		F027AEC1224012F800D61664 /* BackEnabledNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F027AEC0224012F800D61664 /* BackEnabledNavigationController.swift */; };
 		F03CA09A2239623B005161C0 /* PreviewRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CA0992239623B005161C0 /* PreviewRowCell.swift */; };
 		F03CA09C223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CA09B223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift */; };
 		F0B4BC98223EBA5B00C9D614 /* TodayCellFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B4BC97223EBA5B00C9D614 /* TodayCellFullScreenController.swift */; };
@@ -82,6 +83,7 @@
 		F027AEBA223FF47D00D61664 /* BaseTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTodayCell.swift; sourceTree = "<group>"; };
 		F027AEBC223FF68200D61664 /* TodayAppListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayAppListController.swift; sourceTree = "<group>"; };
 		F027AEBE223FF7D000D61664 /* TodayAppCell .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodayAppCell .swift"; sourceTree = "<group>"; };
+		F027AEC0224012F800D61664 /* BackEnabledNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackEnabledNavigationController.swift; sourceTree = "<group>"; };
 		F03CA0992239623B005161C0 /* PreviewRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewRowCell.swift; sourceTree = "<group>"; };
 		F03CA09B223963D6005161C0 /* PreviewScreenShotsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenShotsHorizontalController.swift; sourceTree = "<group>"; };
 		F0B4BC97223EBA5B00C9D614 /* TodayCellFullScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCellFullScreenController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				F0261F72223D5EF8002F20A4 /* TodayController.swift */,
 				F0B4BC97223EBA5B00C9D614 /* TodayCellFullScreenController.swift */,
 				F027AEBC223FF68200D61664 /* TodayAppListController.swift */,
+				F027AEC0224012F800D61664 /* BackEnabledNavigationController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				F0E1DF32223AB0A5000BFF4B /* ReviewRowCell.swift in Sources */,
 				F0D22D9322344D30007E619A /* AppsPageHeader.swift in Sources */,
 				F0D22D8922343A67007E619A /* AppCategoryHorizontalController.swift in Sources */,
+				F027AEC1224012F800D61664 /* BackEnabledNavigationController.swift in Sources */,
 				F0D22D6F223317E5007E619A /* VerticalStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

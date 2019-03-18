@@ -48,6 +48,11 @@ class TodayController: BaseCollectionViewController {
 		collectionView.register(TodayAppListCell.self, forCellWithReuseIdentifier: TodayItem.CellType.multiple.rawValue)
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		tabBarController?.tabBar.superview?.setNeedsLayout()
+	}
+	
 	//MARK:- Collection View Data Source
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return items.count
@@ -61,54 +66,8 @@ class TodayController: BaseCollectionViewController {
 		
 		cell.todayItem = items[indexPath.item]
 		
+		(cell as? TodayAppListCell)?.appListController.collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleAppsTap)))
 		return cell
-	}
-	
-	//MARK:- Network
-	
-	private func fetchData() {
-		let dispatchGroup = DispatchGroup()
-		var topGrossing: AppCategory?
-		var topGames: AppCategory?
-		
-		dispatchGroup.enter()
-		APIService.shared.fetchGames { (appCategory, error) in
-			dispatchGroup.leave()
-			if let error = error {
-				print("Failed to fetch games: ", error)
-				return
-			}
-			
-			topGames = appCategory
-			
-			
-		}//END APIService
-	
-		dispatchGroup.enter()
-		APIService.shared.fetchTopGrossing { (appCategory, error) in
-			dispatchGroup.leave()
-			if let error = error {
-				print("Failed to fetch top-grossing: ", error)
-				return
-			}
-			
-			topGrossing = appCategory
-		}//END APIService
-		
-		
-		// Completion Block
-		dispatchGroup.notify(queue: .main) {
-			print("Finished fetching today data")
-			self.activitityIndicatorView.stopAnimating()
-			
-			self.items = [
-				TodayItem.init(category: "THE DAILY LIST", title: topGrossing?.feed.title ?? "", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple, apps: topGrossing?.feed.results ?? []),
-				TodayItem.init(category: "THE DAILY LIST", title: topGames?.feed.title ?? "", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple, apps: topGames?.feed.results ?? []),
-				TodayItem.init(category: "Life Hack", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps your need to intelligently organize your life the right way", backgroundColor: .white, cellType: .single, apps: [])
-			]
-			
-			self.collectionView.reloadData()
-		}
 	}
 	
 	
@@ -118,7 +77,7 @@ class TodayController: BaseCollectionViewController {
 		if items[indexPath.item].cellType == .multiple {
 			let fullController = TodayAppListController(mode: .fullScreen)
 			fullController.results = self.items[indexPath.item].apps
-			present(fullController, animated: true)
+			present(BackEnabledNavigationController(rootViewController: fullController), animated: true)
 			return
 		}
 		
@@ -179,6 +138,7 @@ class TodayController: BaseCollectionViewController {
 		}, completion: nil)
 	}
 	
+	// MARK:- Handlers
 	@objc private func handleRemoveEnlargedView() {
 		
 		UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
@@ -205,6 +165,78 @@ class TodayController: BaseCollectionViewController {
 			self.collectionView.isUserInteractionEnabled = true
 		})
 	}
+	
+	@objc private func handleAppsTap(gesture: UIGestureRecognizer) {
+		
+		let collectionView = gesture.view
+		
+		let fullControlelr = TodayAppListController(mode: .fullScreen)
+		
+		var superview = collectionView?.superview
+		
+		while superview != nil {
+			if let cell = superview as? TodayAppListCell {
+				
+				guard let indexPath = self.collectionView.indexPath(for: cell) else { return }
+				let apps = self.items[indexPath.item].apps
+				
+				fullControlelr.results = apps
+				present(fullControlelr, animated: true)
+				return
+			}
+			superview = superview?.superview
+		}
+		
+
+	}
+	
+	
+	//MARK:- Network
+	private func fetchData() {
+		let dispatchGroup = DispatchGroup()
+		var topGrossing: AppCategory?
+		var topGames: AppCategory?
+		
+		dispatchGroup.enter()
+		APIService.shared.fetchGames { (appCategory, error) in
+			dispatchGroup.leave()
+			if let error = error {
+				print("Failed to fetch games: ", error)
+				return
+			}
+			
+			topGames = appCategory
+			
+			
+		}//END APIService
+		
+		dispatchGroup.enter()
+		APIService.shared.fetchTopGrossing { (appCategory, error) in
+			dispatchGroup.leave()
+			if let error = error {
+				print("Failed to fetch top-grossing: ", error)
+				return
+			}
+			
+			topGrossing = appCategory
+		}//END APIService
+		
+		
+		// Completion Block
+		dispatchGroup.notify(queue: .main) {
+			print("Finished fetching today data")
+			self.activitityIndicatorView.stopAnimating()
+			
+			self.items = [
+				TodayItem.init(category: "THE DAILY LIST", title: topGrossing?.feed.title ?? "", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple, apps: topGrossing?.feed.results ?? []),
+				TodayItem.init(category: "THE DAILY LIST", title: topGames?.feed.title ?? "", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple, apps: topGames?.feed.results ?? []),
+				TodayItem.init(category: "Life Hack", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps your need to intelligently organize your life the right way", backgroundColor: .white, cellType: .single, apps: [])
+			]
+			
+			self.collectionView.reloadData()
+		}
+	}
+	
 	
 } //END TodayController
 
