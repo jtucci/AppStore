@@ -12,7 +12,7 @@ class TodayAppListCell: BaseTodayCell {
 	
 
 	//MARK:- Properties
-	let appListController = TodayAppListController()
+	let appListController = TodayAppListController(mode: .small)
 	let categoryLabel = UILabel(text: "Life Hack", font: .boldSystemFont(ofSize: 20))
 	let titleLabel = UILabel(text: "Utilizing your Time", font: .boldSystemFont(ofSize: 32), numberOfLines: 2)
 	

@@ -27,7 +27,7 @@ class APIService {
 		let urlString = "https://rss.itunes.apple.com/api/v1/us/ios-apps/new-games-we-love/all/50/explicit.json"
 		fetchAppCategory(for: urlString, completion: completion)
 		 
-	} // END fetchTopGrossing
+	} // END fetchGames
 	
 	//MARK:- Helper
 	func fetchAppCategory(for urlString: String, completion: @escaping (AppCategory?, Error?) -> Void) {

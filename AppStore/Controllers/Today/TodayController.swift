@@ -13,12 +13,6 @@ class TodayController: BaseCollectionViewController {
 	//MARK:- properties
 	static let cellSize: CGFloat = 500
 	
-//	private let items = [
-//		TodayItem.init(category: "Life Hack", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps your need to intelligently organize your life the right way", backgroundColor: .white, cellType: .single),
-//		TodayItem.init(category: "Holidays", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9816228747, green: 0.9801788926, blue: 0.7363908887, alpha: 1), cellType: .single),
-//		TodayItem.init(category: "THE DAILY LIST", title: "Test-Drive These CarPlay Apps", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple),
-//	]
-	
 	private var items = [TodayItem]()
 	private var activitityIndicatorView: UIActivityIndicatorView = {
 		let aiv = UIActivityIndicatorView(style: .whiteLarge)
@@ -120,6 +114,13 @@ class TodayController: BaseCollectionViewController {
 	
 	//MARK:- Collection View Selection
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		
+		if items[indexPath.item].cellType == .multiple {
+			let fullController = TodayAppListController(mode: .fullScreen)
+			fullController.results = self.items[indexPath.item].apps
+			present(fullController, animated: true)
+			return
+		}
 		
 		let fullScreenController = TodayCellFullScreenController()
 		fullScreenController.todayItem = items[indexPath.row]

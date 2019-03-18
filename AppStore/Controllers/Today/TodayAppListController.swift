@@ -11,31 +11,60 @@ import UIKit
 class TodayAppListController: BaseCollectionViewController {
 	
 	//MARK:- Properties
-	private let todayAppCellId = "appCellId"
+	enum Mode {
+		case small, fullScreen
+	}
 	var results = [FeedResult]()
+	private let todayAppCellId = "appCellId"
 	private let spacing: CGFloat = 16
+	private let mode: Mode	
+	private let closeButton: UIButton = {
+		let button = UIButton(type: .system)
+		button.setImage(#imageLiteral(resourceName: "close_button"), for: .normal)
+		button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+		return button
+	}()
+	
+	override var prefersStatusBarHidden: Bool { return true }
+	
+	//MARK:- Initialization
+	init(mode: Mode) {
+		self.mode = mode
+		super.init()
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 	
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		collectionView.backgroundColor = .white
-		collectionView.isScrollEnabled = false
 		collectionView.register(TodayAppCell.self, forCellWithReuseIdentifier: todayAppCellId)
 		
-		APIService.shared.fetchGames { (appGroup, error) in
-			self.results = appGroup?.feed.results ?? []
-			
-			DispatchQueue.main.async {
-				self.collectionView.reloadData()
-			}
+		if mode == .fullScreen {
+			view.addSubview(closeButton)
+			closeButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 20, left: 0, bottom: 0, right: 16), size: .init(width: 44, height: 44))
+		} else {
+			collectionView.isScrollEnabled = false
 		}
+
 	}
 	
+	//MARK:- Handlers
+	
+	@objc private func handleDismiss() {
+		dismiss(animated: true)
+	}
 	
 	//MARK:- Collection View Data Source
-	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		if mode == .fullScreen {
+			return results.count
+		}
+		
 		return min(4, results.count)
 	}
 	
@@ -51,12 +80,28 @@ extension TodayAppListController: UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		
-		let height: CGFloat = (view.frame.height - 3 * spacing) / 4
+		let height: CGFloat = 68
+		let width: CGFloat
 		
-		return CGSize(width: view.frame.width, height: height)
+		if mode == .fullScreen {
+			width = view.frame.width - 48
+		} else {
+			width = view.frame.width
+		}
+		
+		return CGSize(width: width, height: height)
+		
+		
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 		return spacing
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+		if mode == .fullScreen {
+			return .init(top: 12, left: 24, bottom: 12, right: 24)
+		}
+		return .zero
 	}
 }
