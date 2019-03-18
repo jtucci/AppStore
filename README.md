@@ -1,5 +1,5 @@
 # AppStore Clone
-Created a clone of Apple's 'App Store' application to practice and practice and learn more about Programmatic UI & using dispatch groups for syncing multiple network calls.
+Created a clone of Apple's 'App Store' application to practice and learn more about Programmatic UI & using dispatch groups for syncing multiple network calls.
 
 ### Key Implementation Details  
 **User Interface**
