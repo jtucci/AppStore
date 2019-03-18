@@ -11,10 +11,12 @@ import UIKit
 class TodayController: BaseCollectionViewController {
 	
 	//MARK:- properties
-	private let todayCellId = "todayCellId"
+	static let cellSize: CGFloat = 500
+	
 	private let items = [
-		TodayItem.init(category: "Life Hack", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps your need to intelligently organize your life the right way", backgroundColor: .white),
-		TodayItem.init(category: "Holidays", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9816228747, green: 0.9801788926, blue: 0.7363908887, alpha: 1))
+		TodayItem.init(category: "Life Hack", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps your need to intelligently organize your life the right way", backgroundColor: .white, cellType: .single),
+		TodayItem.init(category: "Holidays", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9816228747, green: 0.9801788926, blue: 0.7363908887, alpha: 1), cellType: .single),
+		TodayItem.init(category: "THE DAILY LIST", title: "Test-Drive These CarPlay Apps", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple),
 	]
 	
 	private var startingFrame: CGRect?
@@ -28,10 +30,11 @@ class TodayController: BaseCollectionViewController {
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		navigationController?.isNavigationBarHidden = true
 		
+		navigationController?.isNavigationBarHidden = true
 		collectionView?.backgroundColor = #colorLiteral(red: 0.9534369111, green: 0.9458779693, blue: 0.9529135823, alpha: 1)
-		collectionView?.register(TodayCell.self, forCellWithReuseIdentifier: todayCellId)
+		collectionView?.register(TodayCell.self, forCellWithReuseIdentifier: TodayItem.CellType.single.rawValue)
+		collectionView.register(TodayAppListCell.self, forCellWithReuseIdentifier: TodayItem.CellType.multiple.rawValue)
 	}
 	
 	//MARK:- Collection View Data Source
@@ -40,8 +43,13 @@ class TodayController: BaseCollectionViewController {
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: todayCellId, for: indexPath) as! TodayCell
+		
+		let cellId = items[indexPath.item].cellType.rawValue
+		
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! BaseTodayCell
+		
 		cell.todayItem = items[indexPath.item]
+		
 		return cell
 	}
 	
@@ -139,7 +147,7 @@ extension TodayController: UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		
-		return CGSize(width: view.frame.width - 48, height: 450)
+		return CGSize(width: view.frame.width - 48, height: TodayController.cellSize)
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
