@@ -31,7 +31,7 @@ class TodayAppListCell: BaseTodayCell {
 		super.init(frame: frame)
 		
 		backgroundColor = .white
-		layer.cornerRadius = 16
+		
 		
 		let stackView = UIStackView(arrangedSubviews: [
 			categoryLabel,

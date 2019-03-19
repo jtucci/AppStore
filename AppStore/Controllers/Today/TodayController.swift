@@ -170,7 +170,7 @@ class TodayController: BaseCollectionViewController {
 		
 		let collectionView = gesture.view
 		
-		let fullControlelr = TodayAppListController(mode: .fullScreen)
+		let fullController = TodayAppListController(mode: .fullScreen)
 		
 		var superview = collectionView?.superview
 		
@@ -180,13 +180,13 @@ class TodayController: BaseCollectionViewController {
 				guard let indexPath = self.collectionView.indexPath(for: cell) else { return }
 				let apps = self.items[indexPath.item].apps
 				
-				fullControlelr.results = apps
-				present(fullControlelr, animated: true)
+				fullController.results = apps
+				present(BackEnabledNavigationController(rootViewController: fullController), animated: true)
 				return
 			}
 			superview = superview?.superview
 		}
-		
+		 
 
 	}
 	
@@ -228,9 +228,10 @@ class TodayController: BaseCollectionViewController {
 			self.activitityIndicatorView.stopAnimating()
 			
 			self.items = [
+				TodayItem.init(category: "Life Hack", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps your need to intelligently organize your life the right way", backgroundColor: .white, cellType: .single, apps: []),
 				TodayItem.init(category: "THE DAILY LIST", title: topGrossing?.feed.title ?? "", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple, apps: topGrossing?.feed.results ?? []),
-				TodayItem.init(category: "THE DAILY LIST", title: topGames?.feed.title ?? "", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple, apps: topGames?.feed.results ?? []),
-				TodayItem.init(category: "Life Hack", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps your need to intelligently organize your life the right way", backgroundColor: .white, cellType: .single, apps: [])
+				TodayItem.init(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9838578105, green: 0.9588007331, blue: 0.7274674177, alpha: 1), cellType: .single, apps: []),
+				TodayItem.init(category: "THE DAILY LIST", title: topGames?.feed.title ?? "", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple, apps: topGames?.feed.results ?? [])
 			]
 			
 			self.collectionView.reloadData()
