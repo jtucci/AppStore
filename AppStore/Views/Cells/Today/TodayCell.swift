@@ -38,6 +38,7 @@ class TodayCell: BaseTodayCell {
 		
 		backgroundColor = .white
 		layer.cornerRadius = 16
+		
 		imageView.contentMode = .scaleAspectFill
 		imageView.clipsToBounds = true
 		
@@ -52,7 +53,7 @@ class TodayCell: BaseTodayCell {
 		rootStackView.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 24, bottom: 24, right: 24))
 		
 		self.topConsraint = rootStackView.topAnchor.constraint(equalTo: topAnchor, constant: 24)
-		self.topConsraint?.isActive = true
+		self.topConsraint.isActive = true
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
