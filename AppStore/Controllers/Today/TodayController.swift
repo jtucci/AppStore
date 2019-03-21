@@ -97,6 +97,7 @@ class TodayController: BaseCollectionViewController {
 			self.tabBarController?.tabBar.transform = .identity
 			
 			guard let cell = self.appFullScreenController.tableView.cellForRow(at: [0,0]) as? TodayFullScreenHeaderCell else { return }
+			self.appFullScreenController.closeButton.alpha = 0
 			cell.todayCell.topConsraint.constant = 24
 			cell.layoutIfNeeded()
 			
@@ -192,7 +193,7 @@ class TodayController: BaseCollectionViewController {
 	}
 	
 	
-	//MARK:- Helper Setup
+	//MARK:- Helper Functions Setup
 	private func setupSingleAppFullScreenController(_ indexPath: IndexPath) {
 		let fullScreenController = TodayCellFullScreenController()
 		fullScreenController.todayItem = items[indexPath.row]
@@ -215,11 +216,15 @@ class TodayController: BaseCollectionViewController {
 		guard let startingFrame = self.startingFrame else { return }
 		
 		//AutoLayout constraint animations
-		
 		self.anchoredConstraints = fullscreenView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: startingFrame.origin.y, left: startingFrame.origin.x, bottom: 0, right: 0), size: .init(width: startingFrame.width, height: startingFrame.height))
 		
-		
 		self.view.layoutIfNeeded()
+	}
+	
+	private func setupStartingCellFrame(_ indexPath: IndexPath) {
+		guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+		guard let startingFrame = cell.superview?.convert(cell.frame, to: nil) else { return }
+		self.startingFrame = startingFrame
 	}
 	
 	private func beginAnimationAppFullscreen() {
@@ -238,11 +243,6 @@ class TodayController: BaseCollectionViewController {
 		}, completion: nil)
 	}
 	
-	private func setupStartingCellFrame(_ indexPath: IndexPath) {
-		guard let cell = collectionView.cellForItem(at: indexPath) else { return }
-		guard let startingFrame = cell.superview?.convert(cell.frame, to: nil) else { return }
-		self.startingFrame = startingFrame
-	}
 	
 } //END TodayController
 
