@@ -13,6 +13,10 @@ class MusicController: BaseCollectionViewController {
 	//MARK:- Properties
 	private let trackCellId = "trackCellId"
 	private let footerId = "footerId"
+	private var results = [Result]()
+	private let searchTerm = "taylor"
+	private var isPaginating = false
+	private var isDonePaginating = false
 	
 	//MARK:- Life Cycle
 	override func viewDidLoad() {
@@ -21,16 +25,65 @@ class MusicController: BaseCollectionViewController {
 		
 		collectionView.register(TrackCell.self, forCellWithReuseIdentifier: trackCellId)
 		collectionView.register(MusicLoadingFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
+		
+		
+		fetchData()
+	}
+	
+	
+	//MARK:- Network
+	private func fetchData() {
+		let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&offset=0&limit=20"
+		
+		APIService.shared.fetch(urlString: urlString) { (searchResult: SearchResult?, error) in
+			if let error = error {
+				print("Failed to detch data: ", error)
+				return
+			}
+			
+			self.results = searchResult?.results ?? []
+			DispatchQueue.main.async {
+				self.collectionView.reloadData()
+			}
+		}
 	}
 	
 	//MARK:- Collection View Data Source
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 20
+		return results.count
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: trackCellId, for: indexPath) as! TrackCell
 		
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: trackCellId, for: indexPath) as! TrackCell
+		let track = results[indexPath.item]
+		
+		cell.nameLabel.text = track.trackName
+		cell.imageView.sd_setImage(with: URL(string: track.artworkUrl100))
+		cell.subtitleLabel.text = "\(track.artistName ?? "") • \(track.collectionName ?? "")"
+		if indexPath.item == results.count - 1 && !isPaginating {
+			
+			isPaginating = true
+			
+			let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&offset=\(results.count)&limit=20"
+			
+			APIService.shared.fetch(urlString: urlString) { (searchResult: SearchResult?, error) in
+				if let error = error {
+					print("Failed to detch data: ", error)
+					return
+				}
+				
+				if searchResult?.resultCount == 0 {
+					self.isPaginating = true
+				}
+				
+				self.results += searchResult?.results ?? []
+				DispatchQueue.main.async {
+					self.collectionView.reloadData()
+				}
+				self.isPaginating = false
+			}
+		}
 		
 		return cell
 	}
@@ -53,7 +106,8 @@ extension MusicController: UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		
-		return CGSize(width: view.frame.width, height: 100)
+		let height: CGFloat = isDonePaginating ? 0 : 100
+		return CGSize(width: view.frame.width, height: height)
 	}
 	
 	
