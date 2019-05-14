@@ -14,3 +14,17 @@ Created a clone of Apple's 'App Store' application to practice and learn more ab
 **API Data Fetching**
   - Fetch JSON data from iTunes Search API
   - Performs multiple fetches with DispatchGroup 
+
+### Installation 
+
+Install Cocoa Pods
+
+`sudo gem install cocoapods`
+
+
+Install necessary pods
+
+`pod install`
+
+
+Open AppStore.xcworkspace in XCode and run
