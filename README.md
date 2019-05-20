@@ -1,5 +1,5 @@
 # AppStore Clone
-Created a clone of Apple's 'App Store' application to practice and learn more about Programmatic UI & using dispatch groups for syncing multiple network calls.
+Created a clone of Apple's 'App Store' application to practice and learn more about Programmatic UI & using dispatch groups for syncing multiple network calls. 
 
 ### Demo 
 ![](demoFiles/Today.gif)
@@ -17,14 +17,16 @@ Created a clone of Apple's 'App Store' application to practice and learn more ab
 
 ### Installation 
 
-Install Cocoa Pods
+Install Cocoa Pods if not already installed.
 
 `sudo gem install cocoapods`
 
 
-Install necessary pods
+Install necessary pods by running command in project folder. 
 
 `pod install`
 
 
 Open AppStore.xcworkspace in XCode and run
+
+Project is currently updated for Swift 5. 
